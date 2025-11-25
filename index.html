@@ -1,1 +1,277 @@
-<h1>Welcome to My Makeover Studio</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Makeover & Hairstyling Studio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (social icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous"/>
+
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: #fff7fa;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            font-family: "Playfair Display", serif;
+            color: #7a2253;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            height: 90vh;
+            background: url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80")
+                center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero button {
+            padding: 12px 30px;
+            background-color: #d36ba6;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #b8588e;
+        }
+
+        /* ========== SERVICES ========== */
+        .services h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #f4ddea;
+            transition: 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            border-color: #d36ba6;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 350px;
+            border-radius: 15px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        /* ========== CONTACT FORM ========== */
+        .contact h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #f4ddea;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        form button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            background: #d36ba6;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #b8588e;
+        }
+
+        /* ========== FOOTER / SOCIAL ICONS ========== */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #ffeaf3;
+            margin-top: 60px;
+        }
+
+        .social a {
+            margin: 0 10px;
+            color: #7a2253;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            color: #d36ba6;
+        }
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Makeover & Hairstyling Studio</h1>
+            <p>Bringing out your inner elegance with professional touch, style, and care.</p>
+            <button onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'})">
+                Book an Appointment
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+
+        <div class="service-list">
+            <div class="service-box">
+                <h3>Bridal Makeup</h3>
+                <p>Elegant, long-lasting bridal looks tailored to your personality and theme.</p>
+            </div>
+            <div class="service-box">
+                <h3>Party Makeup</h3>
+                <p>Perfect glam makeovers for events, celebrations, and evenings out.</p>
+            </div>
+            <div class="service-box">
+                <h3>Hairstyling</h3>
+                <p>From curls to buns, modern to classic — custom hairstyles for any occasion.</p>
+            </div>
+            <div class="service-box">
+                <h3>Makeup Consultation</h3>
+                <p>Personalized beauty guidance, product selection, and skin-tone matching.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+        <img src="https://images.unsplash.com/photo-1522335789204-389d427b5652?auto=format&fit=crop&w=500&q=80" alt="">
+        <div class="about-text">
+            <h2>About Me</h2>
+            <p>
+                Hi! I'm <strong>[Your Name]</strong>, a professional makeover and hairstyling artist with a passion
+                for enhancing natural beauty.  
+                With years of experience in bridal, party, and fashion styling, I focus on creating looks that feel
+                both elegant and authentic.
+            </p>
+            <p>
+                My goal is to make you look and feel your absolute best — whether it's for your big day, a special
+                event, or a personal transformation.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+
+        <!-- Replace YOUR_FORMSPREE_URL after creating a Formspree form -->
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_URL" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="_replyto" placeholder="Your Email" required />
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
