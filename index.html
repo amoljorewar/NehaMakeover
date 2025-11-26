@@ -8,15 +8,15 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome (social icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
     <style>
         /* ========== GLOBAL STYLES ========== */
         body {
             margin: 0;
             font-family: "Inter", sans-serif;
-            background-color: #fff7fa;
+            background: #fff7fa;
             color: #333;
         }
 
@@ -26,27 +26,61 @@
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
         section {
-            padding: 70px 20px;
+            padding: 80px 20px;
             max-width: 1100px;
             margin: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f3cfe0;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .navbar a {
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            color: #d36ba6;
         }
 
         /* ========== HERO SECTION ========== */
         .hero {
-            position: relative;
             height: 90vh;
-            background: url("images/main_background.jpeg")
-                center/cover no-repeat;
+            background: url("images/main_background.jpeg") center/cover no-repeat;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
+            padding: 0 20px;
         }
 
         .hero::after {
@@ -59,34 +93,36 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 600px;
+            animation: fadeInHero 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeInHero {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
         }
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 10px;
-	    color: white;
+            margin: 0;
         }
 
         .hero p {
+            margin: 15px 0 25px;
             font-size: 1.2rem;
-            margin-bottom: 20px;
-            font-weight: 300;
         }
 
         .hero button {
-            padding: 12px 30px;
-            background-color: #d36ba6;
+            padding: 12px 32px;
+            background: linear-gradient(45deg, #d36ba6, #b8588e);
             color: white;
             border: none;
             border-radius: 25px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: 0.3s;
+            font-size: 1rem;
         }
 
         .hero button:hover {
-            background-color: #b8588e;
+            opacity: 0.9;
         }
 
         /* ========== SERVICES ========== */
@@ -97,21 +133,28 @@
 
         .service-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
         }
 
         .service-box {
-            background: #fff;
+            background: white;
             padding: 25px;
             border-radius: 12px;
-            border: 1px solid #f4ddea;
+            border: 1px solid #f3d7e8;
             transition: 0.3s;
+            text-align: center;
+        }
+
+        .service-box i {
+            font-size: 2.2rem;
+            color: #d36ba6;
+            margin-bottom: 10px;
         }
 
         .service-box:hover {
-            transform: translateY(-5px);
-            border-color: #d36ba6;
+            transform: translateY(-7px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
         }
 
         /* ========== ABOUT SECTION ========== */
@@ -123,157 +166,208 @@
         }
 
         .about img {
-            width: 350px;
+            width: 360px;
             border-radius: 15px;
         }
 
-        .about-text {
-            flex: 1;
-        }
-
-        /* ========== CONTACT FORM ========== */
-        .contact h2 {
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
             text-align: center;
         }
 
-        form {
-            max-width: 600px;
-            margin: 30px auto 0;
+        .testimonial-slider {
+            max-width: 700px;
+            margin: auto;
             background: #fff;
             padding: 30px;
             border-radius: 12px;
-            border: 1px solid #f4ddea;
+            border: 1px solid #f3d7e8;
+        }
+
+        .testimonial {
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        /* ========== CONTACT FORM ========== */
+        form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #f3d7e8;
         }
 
         form input, form textarea {
             width: 100%;
-            padding: 12px;
             margin-top: 12px;
+            padding: 12px;
             border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
+            border: 1px solid #ccc;
         }
 
         form button {
             margin-top: 20px;
             width: 100%;
             padding: 14px;
-            background: #d36ba6;
+            background: linear-gradient(45deg, #d36ba6, #b8588e);
             border: none;
             color: white;
             border-radius: 8px;
-            font-size: 1.1rem;
             cursor: pointer;
         }
 
-        form button:hover {
-            background: #b8588e;
-        }
-
-        /* ========== FOOTER / SOCIAL ICONS ========== */
+        /* ========== FOOTER ========== */
         footer {
-            text-align: center;
-            padding: 25px;
             background: #ffeaf3;
-            margin-top: 60px;
+            padding: 25px;
+            text-align: center;
         }
 
         .social a {
             margin: 0 10px;
+            font-size: 1.5rem;
             color: #7a2253;
-            font-size: 1.4rem;
-            transition: 0.3s;
         }
 
-        .social a:hover {
-            color: #d36ba6;
+        /* ========== WHATSAPP FLOAT BUTTON ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            padding: 14px 17px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
         }
 
+        /* Mobile */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 2.3rem; }
+            .hero h1 { font-size: 2.4rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Neha Jorewar</h1>
-	    <h1>Makeover & Hairstyling Studio</h1>
-            <p>Bringing out your inner elegance with professional touch, style, and care.</p>
-            <button onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'})">
-                Book an Appointment
-            </button>
+<!-- NAVBAR -->
+<div class="navbar">
+    <strong style="font-family: Playfair Display; font-size: 1.2rem;">Neha Jorewar Studio</strong>
+    <div>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Neha Jorewar</h1>
+        <h1>Makeover & Hairstyling Studio</h1>
+        <p>Bringing out your inner elegance with professional touch, style, and care.</p>
+        <button onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Book an Appointment</button>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <h2>Our Services</h2>
+
+    <div class="service-list">
+        <div class="service-box">
+            <i class="fa-solid fa-ring"></i>
+            <h3>Bridal Makeup</h3>
+            <p>Elegant, long-lasting bridal looks tailored to your personality.</p>
         </div>
-    </section>
-
-    <!-- ===== SERVICES ===== -->
-    <section class="services" id="services">
-        <h2>Our Services</h2>
-
-        <div class="service-list">
-            <div class="service-box">
-                <h3>Bridal Makeup</h3>
-                <p>Elegant, long-lasting bridal looks tailored to your personality and theme.</p>
-            </div>
-            <div class="service-box">
-                <h3>Party Makeup</h3>
-                <p>Perfect glam makeovers for events, celebrations, and evenings out.</p>
-            </div>
-            <div class="service-box">
-                <h3>Hairstyling</h3>
-                <p>From curls to buns, modern to classic — custom hairstyles for any occasion.</p>
-            </div>
-            <div class="service-box">
-                <h3>Makeup Consultation</h3>
-                <p>Personalized beauty guidance, product selection, and skin-tone matching.</p>
-            </div>
+        <div class="service-box">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>Party Makeup</h3>
+            <p>Perfect glam for celebrations, parties, and events.</p>
         </div>
-    </section>
-
-    <!-- ===== ABOUT ===== -->
-    <section class="about" id="about">
-        <img src="https://images.unsplash.com/photo-1522335789204-389d427b5652?auto=format&fit=crop&w=500&q=80" alt="">
-        <div class="about-text">
-            <h2>About Me</h2>
-            <p>
-                Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover and hairstyling artist with a passion
-                for enhancing natural beauty.  
-                With years of experience in bridal, party, and fashion styling, I focus on creating looks that feel
-                both elegant and authentic.
-            </p>
-            <p>
-                My goal is to make you look and feel your absolute best — whether it's for your big day, a special
-                event, or a personal transformation.
-            </p>
+        <div class="service-box">
+            <i class="fa-solid fa-scissors"></i>
+            <h3>Hairstyling</h3>
+            <p>Customized hairstyles from curls to buns, modern to classic.</p>
         </div>
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contact">
-        <h2>Contact Me</h2>
-
-        <!-- Replace YOUR_FORMSPREE_URL after creating a Formspree form -->
-        <form action="https://formspree.io/f/YOUR_FORMSPREE_URL" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="_replyto" placeholder="Your Email" required />
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="social">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <div class="service-box">
+            <i class="fa-solid fa-comments"></i>
+            <h3>Makeup Consultation</h3>
+            <p>Personalized product and style guidance.</p>
         </div>
-        <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
-    </footer>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <img src="https://images.unsplash.com/photo-1522335789204-389d427b5652?auto=format&fit=crop&w=500&q=80" alt="">
+    <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+            Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience 
+            crafting elegant bridal, party, and fashion looks.
+        </p>
+        <p>
+            My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.
+        </p>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <h2>Client Reviews</h2>
+
+    <div class="testimonial-slider">
+        <div class="testimonial active">"Absolutely loved my bridal makeup! It stayed perfect all day!" — <b>Priya</b></div>
+        <div class="testimonial">"Neha understood exactly what look I wanted. Highly recommended!" — <b>Sneha</b></div>
+        <div class="testimonial">"Amazing hairstyling and so professional. Will book again!" — <b>Anjali</b></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <h2>Contact Me</h2>
+
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_URL" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="_replyto" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="social">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
+</footer>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    /* Simple testimonial auto-slider */
+    let index = 0;
+    setInterval(() => {
+        const testimonials = document.querySelectorAll('.testimonial');
+        testimonials.forEach(t => t.classList.remove('active'));
+        testimonials[index].classList.add('active');
+        index = (index + 1) % testimonials.length;
+    }, 3000);
+</script>
 
 </body>
 </html>
-
