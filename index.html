@@ -18,6 +18,7 @@
             font-family: "Inter", sans-serif;
             background: #fff7fa;
             color: #333;
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3 {
@@ -51,7 +52,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #f3cfe0;
             padding: 12px 30px;
@@ -65,7 +66,7 @@
             font-family: "Playfair Display", serif;
             font-size: 1.2rem;
             font-weight: bold;
-            white-space: nowrap;
+            color: #7a2253;
         }
 
         .nav-links {
@@ -74,16 +75,16 @@
         }
 
         .nav-links a {
-            white-space: nowrap;
-            flex-shrink: 0;
             font-weight: 500;
+            color: #7a2253;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
             color: #d36ba6;
         }
 
-        /* Hamburger */
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -159,10 +160,7 @@
         }
 
         /* ========== SERVICES ========== */
-        .services h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .services h2 { text-align: center; margin-bottom: 40px; }
 
         .service-list {
             display: grid;
@@ -198,16 +196,10 @@
             align-items: center;
         }
 
-        .about img {
-            width: 360px;
-            border-radius: 15px;
-        }
+        .about img { width: 360px; border-radius: 15px; }
 
         /* ========== TESTIMONIALS ========== */
-        .testimonials {
-            text-align: center;
-        }
-
+        .testimonials { text-align: center; }
         .testimonial-slider {
             max-width: 700px;
             margin: auto;
@@ -216,15 +208,8 @@
             border-radius: 12px;
             border: 1px solid #f3d7e8;
         }
-
-        .testimonial {
-            display: none;
-        }
-
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 1s;
-        }
+        .testimonial { display: none; }
+        .testimonial.active { display: block; animation: fadeIn 1s; }
 
         /* ========== CONTACT FORM ========== */
         form {
@@ -261,7 +246,6 @@
             padding: 25px;
             text-align: center;
         }
-
         .social a {
             margin: 0 10px;
             font-size: 1.5rem;
@@ -299,11 +283,7 @@
                 transform: translateY(-20px);
                 opacity: 0;
                 pointer-events: none;
-                transition: 0.3s ease;
-            }
-
-            .nav-links a {
-                padding: 10px 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
             }
 
             #menu-toggle:checked + .hamburger + .nav-links {
@@ -312,8 +292,15 @@
                 pointer-events: auto;
             }
 
-            .hamburger {
-                display: flex;
+            .hamburger { display: flex; }
+        }
+
+        /* Desktop nav always visible */
+        @media (min-width: 769px) {
+            .nav-links {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                pointer-events: auto !important;
             }
         }
     </style>
