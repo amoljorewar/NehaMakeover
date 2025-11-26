@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Professional bridal, party, and fashion makeup & hairstyling services by Neha Jorewar Studio. Book your appointment today!">
     <title>Neha Jorewar Makeover & Hairstyling Studio</title>
 
     <!-- Google Fonts -->
@@ -27,15 +26,7 @@
             color: #7a2253;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        a:focus {
-            outline: 2px dashed #d36ba6;
-            outline-offset: 3px;
-        }
+        a { text-decoration: none; color: inherit; }
 
         section {
             padding: 80px 20px;
@@ -47,10 +38,7 @@
         }
 
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ========== NAVBAR ========== */
@@ -86,28 +74,12 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #d36ba6;
-        }
+        .nav-links a:hover { color: #d36ba6; }
 
         /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            height: 3px;
-            width: 25px;
-            background: #7a2253;
-            border-radius: 2px;
-        }
-
-        #menu-toggle {
-            display: none;
-        }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { height: 3px; width: 25px; background: #7a2253; border-radius: 2px; }
+        #menu-toggle { display: none; }
 
         /* ========== HERO SECTION ========== */
         .hero {
@@ -140,24 +112,8 @@
             100% { opacity: 1; transform: translateY(0);}
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0 0 10px;
-            color: white;
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            margin: 0 0 15px;
-            font-weight: 400;
-            color: white;
-        }
-
-        .hero p {
-            margin: 15px 0 25px;
-            font-size: 1.2rem;
-        }
-
+        .hero h1 { font-size: 3rem; margin: 0; color: white; }
+        .hero p { margin: 15px 0 25px; font-size: 1.2rem; }
         .hero button {
             padding: 12px 32px;
             background: linear-gradient(45deg, #d36ba6, #b8588e);
@@ -167,21 +123,15 @@
             cursor: pointer;
             font-size: 1rem;
         }
-
-        .hero button:hover,
-        .hero button:focus {
-            opacity: 0.9;
-        }
+        .hero button:hover { opacity: 0.9; }
 
         /* ========== SERVICES ========== */
         .services h2 { text-align: center; margin-bottom: 40px; }
-
         .service-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
         }
-
         .service-box {
             background: white;
             padding: 25px;
@@ -190,17 +140,8 @@
             transition: 0.3s;
             text-align: center;
         }
-
-        .service-box i {
-            font-size: 2.2rem;
-            color: #d36ba6;
-            margin-bottom: 10px;
-        }
-
-        .service-box:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-        }
+        .service-box i { font-size: 2.2rem; color: #d36ba6; margin-bottom: 10px; }
+        .service-box:hover { transform: translateY(-7px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
 
         /* ========== ABOUT SECTION ========== */
         .about {
@@ -209,17 +150,7 @@
             gap: 40px;
             align-items: center;
         }
-
-        .about img {
-            width: 360px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-        }
-
-        .about-text {
-            flex: 1;
-        }
+        .about img { width: 360px; border-radius: 15px; }
 
         /* ========== TESTIMONIALS ========== */
         .testimonials { text-align: center; }
@@ -243,7 +174,6 @@
             border-radius: 12px;
             border: 1px solid #f3d7e8;
         }
-
         form input, form textarea {
             width: 100%;
             margin-top: 12px;
@@ -251,7 +181,6 @@
             border-radius: 8px;
             border: 1px solid #ccc;
         }
-
         form button {
             margin-top: 20px;
             width: 100%;
@@ -261,6 +190,27 @@
             color: white;
             border-radius: 8px;
             cursor: pointer;
+        }
+
+        /* Form messages */
+        .form-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            font-size: 0.95rem;
+            opacity: 0;
+        }
+        .form-message.success {
+            background: linear-gradient(90deg, #d36ba6, #b8588e);
+            color: white;
+        }
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         /* ========== FOOTER ========== */
@@ -292,8 +242,6 @@
         /* ========== RESPONSIVE NAVBAR ========== */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.4rem; }
-            .hero h2 { font-size: 1.5rem; }
-
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -309,13 +257,11 @@
                 pointer-events: none;
                 transition: transform 0.3s ease, opacity 0.3s ease;
             }
-
             #menu-toggle:checked + .hamburger + .nav-links {
                 opacity: 1;
                 transform: translateY(0);
                 pointer-events: auto;
             }
-
             .hamburger { display: flex; }
         }
 
@@ -351,8 +297,9 @@
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Neha Jorewar Makeover & Hairstyling Studio</h1>
-        <h2>Bringing out your inner elegance with professional touch, style, and care.</h2>
+        <h1>Neha Jorewar</h1>
+        <h1>Makeover & Hairstyling Studio</h1>
+        <p>Bringing out your inner elegance with professional touch, style, and care.</p>
         <button onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Book an Appointment</button>
     </div>
 </section>
@@ -386,16 +333,12 @@
 
 <!-- ABOUT -->
 <section class="about" id="about">
-    <img src="https://images.unsplash.com/photo-1522335789204-389d427b5652?auto=format&fit=crop&w=500&q=80" alt="Neha Jorewar professional makeover and hairstyling" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1522335789204-389d427b5652?auto=format&fit=crop&w=500&q=80" alt="Neha Jorewar">
     <div class="about-text">
         <h2>About Me</h2>
-        <p>
-            Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience 
-            crafting elegant bridal, party, and fashion looks.
-        </p>
-        <p>
-            My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.
-        </p>
+        <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience 
+            crafting elegant bridal, party, and fashion looks.</p>
+        <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
     </div>
 </section>
 
@@ -412,12 +355,14 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
     <h2>Contact Me</h2>
-    <form action="https://formspree.io/f/myzaagjk" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/myzaagjk" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="_replyto" placeholder="Your Email" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
     </form>
+    <p id="form-success" class="form-message success">✔ Thank you! Your message has been sent.</p>
+    <p id="form-error" class="form-message error">✖ Oops! Something went wrong. Please try again.</p>
 </section>
 
 <!-- FOOTER -->
@@ -433,6 +378,7 @@
 <!-- WHATSAPP FLOAT BUTTON -->
 <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
+<!-- SCRIPTS -->
 <script>
     /* Simple testimonial auto-slider */
     let index = 0;
@@ -442,6 +388,44 @@
         testimonials[index].classList.add('active');
         index = (index + 1) % testimonials.length;
     }, 3000);
+
+    /* Contact form AJAX with auto-fade messages */
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                showMessage(successMessage);
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        } catch (error) {
+            showMessage(errorMessage);
+        }
+    });
+
+    function showMessage(element) {
+        element.style.display = 'block';
+        element.style.opacity = '1';
+        element.style.transition = 'opacity 0.5s';
+
+        setTimeout(() => {
+            element.style.opacity = '0';
+            setTimeout(() => { element.style.display = 'none'; }, 500);
+        }, 5000);
+    }
 </script>
 
 </body>
