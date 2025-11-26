@@ -192,7 +192,6 @@
             cursor: pointer;
         }
 
-        /* Form messages */
         .form-message {
             display: none;
             margin-top: 15px;
@@ -363,7 +362,7 @@
     </form>
     <p style="text-align:center; margin-top:15px;">
         Or chat with me on WhatsApp: 
-        <a href="https://wa.me/917020588760" target="_blank" rel="noopener" style="color:#25d366; font-weight:bold;">
+        <a href="#" id="whatsapp-contact" target="_blank" rel="noopener" style="color:#25d366; font-weight:bold;">
             917020588760
         </a>
     </p>
@@ -376,17 +375,17 @@
     <div class="social">
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/917020588760" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" id="whatsapp-footer"><i class="fab fa-whatsapp"></i></a>
     </div>
     <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
 </footer>
 
 <!-- WHATSAPP FLOAT BUTTON -->
-<a href="https://wa.me/917020588760" class="whatsapp-float" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+<a href="#" class="whatsapp-float" id="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
 
 <!-- SCRIPTS -->
 <script>
-    /* Simple testimonial auto-slider */
+    /* Testimonial slider */
     let index = 0;
     setInterval(() => {
         const testimonials = document.querySelectorAll('.testimonial');
@@ -395,7 +394,7 @@
         index = (index + 1) % testimonials.length;
     }, 3000);
 
-    /* Contact form AJAX with auto-fade messages */
+    /* Contact form AJAX */
     const form = document.getElementById('contact-form');
     const successMessage = document.getElementById('form-success');
     const errorMessage = document.getElementById('form-error');
@@ -403,14 +402,12 @@
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const formData = new FormData(form);
-
         try {
             const response = await fetch(form.action, {
                 method: form.method,
                 body: formData,
                 headers: { 'Accept': 'application/json' }
             });
-
             if (response.ok) {
                 form.reset();
                 showMessage(successMessage);
@@ -426,12 +423,23 @@
         element.style.display = 'block';
         element.style.opacity = '1';
         element.style.transition = 'opacity 0.5s';
-
         setTimeout(() => {
             element.style.opacity = '0';
             setTimeout(() => { element.style.display = 'none'; }, 500);
         }, 5000);
     }
+
+    /* WhatsApp cross-device link */
+    const phone = "917020588760";
+    const whatsappLinks = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
+    whatsappLinks.forEach(id => {
+        const el = document.getElementById(id);
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            el.href = `https://wa.me/${phone}`;
+        } else {
+            el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+        }
+    });
 </script>
 
 </body>
