@@ -65,7 +65,7 @@
     .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
     .hero button{padding:12px 32px;background:linear-gradient(45deg,var(--accent-2),#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
 
-    /* CARD (used for services and about) */
+    /* CARD (used for services and about text) */
     .card {
       background: var(--card-bg);
       padding:22px;
@@ -76,8 +76,6 @@
     }
     .card:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
     .card .icon{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
-    .card .card-body{display:flex;gap:16px;align-items:center}
-    .card .card-body img{width:140px;border-radius:10px;object-fit:cover;height:auto;max-width:40%}
     .card h3{margin:0 0 6px 0}
     .card p{margin:0;color:#444}
 
@@ -88,11 +86,11 @@
     .service-box i{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
     .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,var(--accent-2),#b8588e);color:#fff;border:none;cursor:pointer}
 
-    /* ABOUT section styles (uses .card to match services) */
+    /* ABOUT section: image and separate card (text-only) */
     .about{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
-    .about-card{display:flex;gap:18px;align-items:center}
-    .about-card img{width:220px;border-radius:12px;object-fit:cover;height:auto}
-    .about-card .about-text{flex:1}
+    .about-img{flex:0 0 360px}
+    .about-img img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto;display:block}
+    .about-card{flex:1;min-width:220px}
 
     /* TESTIMONIALS */
     .testimonials{text-align:center}
@@ -135,8 +133,7 @@
       .nav-links.open{transform:none;opacity:1;pointer-events:auto}
       nav[role="navigation"] .nav-links a{padding:10px 6px;display:block}
       .about{flex-direction:column;align-items:flex-start}
-      .about-card img{width:100%;max-width:360px}
-      .card .card-body img{max-width:45%}
+      .about-img img{width:100%;max-width:360px}
     }
 
     @media (min-width:769px) {
@@ -245,23 +242,24 @@
       </div>
     </section>
 
-    <!-- ABOUT (styled as a matching card) -->
+    <!-- ABOUT (image and text are separate; text sits inside a card to match services) -->
     <section class="about" id="about" aria-labelledby="about-heading">
-      <div class="card about-card" role="region" aria-labelledby="about-heading">
+      <!-- about image sits alone -->
+      <div class="about-img" aria-hidden="false">
         <img id="about-img"
              src="images/neha_jorewar_about_me.jpeg"
              srcset="images/neha_jorewar_about_me-480.jpeg 480w, images/neha_jorewar_about_me-800.jpeg 800w, images/neha_jorewar_about_me.jpeg 1200w"
              sizes="(max-width:600px) 100vw, 360px"
              alt="Neha Jorewar smiling, makeup artist"
              loading="lazy">
-        <div class="about-text card-body" style="flex-direction:column;gap:10px">
-          <div>
-            <h2 id="about-heading">About Me</h2>
-            <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
-            <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
-          </div>
-        </div>
       </div>
+
+      <!-- separate card for the About text (not enclosing the image) -->
+      <aside class="card about-card" role="region" aria-labelledby="about-heading">
+        <h2 id="about-heading">About Me</h2>
+        <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
+        <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
+      </aside>
     </section>
 
     <!-- TESTIMONIALS -->
