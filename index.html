@@ -83,7 +83,9 @@
       nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
       .about{flex-direction:column;align-items:flex-start}
     }
-    @media (min-width:769px){ .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important} }
+    @media (min-width:769px){
+      .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important}
+    }
 
     /* modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
@@ -94,10 +96,10 @@
     .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
     .modal-main{display:flex;align-items:center;gap:8px;position:relative}
     .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:320px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6;position:relative}
-    /* main fix: keep aspect ratio and allow zoom/pan */
+    /* updated zoom: keep aspect ratio; when zoomed allow pan/scroll */
     .modal-image-wrap img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;user-select:none;cursor:zoom-in;transition:transform .18s ease}
-    .modal-image-wrap.zoomed{overflow:auto} /* when zoomed, scrollbars/panning appear */
-    .modal-image-wrap.zoomed img{max-width:none;max-height:none;width:auto;height:auto;cursor:zoom-out}
+    .modal-image-wrap.zoomed{overflow:auto}
+    .modal-image-wrap.zoomed img{cursor:zoom-out}
     .modal-spinner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--spinner-size);height:var(--spinner-size);border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:#d36ba6;border-right-color:#b8588e;animation:spin 0.9s linear infinite;display:none;z-index:4}
     @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
     .modal-spinner.visible{display:block}
@@ -255,263 +257,344 @@
     </div>
   </div>
 
-  <script>
-  /* ===== basic helpers & existing features ===== */
+<script>
+/* ---------- Helpers & existing features ---------- */
 
-  (function testimonialSlider(){
-    const testimonials = document.querySelectorAll('.testimonial');
-    if (!testimonials || testimonials.length === 0) return;
-    let idx = 0; testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
-    setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
-  })();
+(function testimonialSlider(){
+  const testimonials = document.querySelectorAll('.testimonial');
+  if (!testimonials || testimonials.length === 0) return;
+  let idx = 0; testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
+  setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
+})();
 
-  (function contactFormAjax(){
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('form-success');
-    const errorMessage = document.getElementById('form-error');
-    if (!form) return;
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
-        if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
-      } catch (err) { showMessage(errorMessage); }
-    });
-    function showMessage(element) {
-      element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
-      setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
-    }
-  })();
+(function contactFormAjax(){
+  const form = document.getElementById('contact-form');
+  const successMessage = document.getElementById('form-success');
+  const errorMessage = document.getElementById('form-error');
+  if (!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const formData = new FormData(form);
+    try {
+      const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
+      if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
+    } catch (err) { showMessage(errorMessage); }
+  });
+  function showMessage(element) {
+    element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
+    setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
+  }
+})();
 
-  /* ===== mobile hamburger: close when nav link clicked ===== */
-  (function mobileMenuBehavior(){
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelectorAll('.nav-link');
-    if (!menuToggle || !navLinks) return;
-    navLinks.forEach(a => {
-      a.addEventListener('click', () => {
-        // uncheck to close menu on mobile
-        if (menuToggle.checked) {
-          menuToggle.checked = false;
-          // return focus to the clicked link target (section will receive focus after scroll)
-        }
-      });
-    });
-    // also close when clicking outside nav (optional)
-    document.addEventListener('click', (e) => {
-      const nav = document.getElementById('primary-navigation');
-      if (!nav) return;
-      if (menuToggle.checked && !nav.contains(e.target) && !e.target.closest('label.hamburger')) {
+/* ===== mobile hamburger: close when nav link clicked ===== */
+(function mobileMenuBehavior(){
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelectorAll('.nav-link');
+  if (!menuToggle || !navLinks) return;
+  navLinks.forEach(a => {
+    a.addEventListener('click', () => {
+      if (menuToggle.checked) {
         menuToggle.checked = false;
       }
     });
-  })();
+  });
+  // click outside closes menu (optional)
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('primary-navigation');
+    if (!nav) return;
+    if (menuToggle.checked && !nav.contains(e.target) && !e.target.closest('label.hamburger')) {
+      menuToggle.checked = false;
+    }
+  });
+})();
 
-  (function whatsappLinks(){
-    const phone = "917020588760";
-    const ids = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
-    const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
-      el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+(function whatsappLinks(){
+  const phone = "917020588760";
+  const ids = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
+  const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+    el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+  });
+})();
+
+/* ensure about image (jpeg) */
+(function ensureAboutImage() {
+  const imgEl = document.getElementById('about-img');
+  if (!imgEl) return;
+  const tester = new Image();
+  tester.onload = () => console.info('[about] image loaded:', imgEl.src);
+  tester.onerror = () => {
+    const altUrl = 'images/neha_jorewar_about_me.jpeg';
+    console.warn('[about] initial about image failed. Trying', altUrl);
+    imgEl.src = altUrl;
+    imgEl.removeAttribute('srcset');
+  };
+  tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
+})();
+
+/* ---------- Bridal modal gallery with point-based zoom ---------- */
+(function bridalModal(){
+  const openBtns = document.querySelectorAll('.open-bridal-gallery');
+  const modal = document.getElementById('bridal-modal');
+  if (!modal) { console.warn('[bridal] modal not found'); return; }
+  const backdrop = modal.querySelector('.modal-backdrop');
+  const modalPanel = modal.querySelector('.modal-panel');
+  const mainImg = document.getElementById('bridal-modal-main');
+  const spinner = document.getElementById('modal-spinner');
+  const modalWrap = document.getElementById('modal-image-wrap');
+  const caption = document.getElementById('bridal-caption');
+  const thumbsContainer = document.getElementById('bridal-thumbs');
+  const prevBtn = modal.querySelector('[data-action="prev"]');
+  const nextBtn = modal.querySelector('[data-action="next"]');
+  const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
+
+  const folder = 'images/Bridal';
+  const MAX = 12;
+  const pad = n => n.toString().padStart(2,'0');
+  const candidates = [];
+  for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
+
+  function testImage(url, timeout = 5000){
+    return new Promise((resolve) => {
+      const img = new Image();
+      let done = false;
+      const tidy = ok => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
+      img.onload = () => tidy(true);
+      img.onerror = () => tidy(false);
+      setTimeout(() => tidy(false), timeout);
+      img.src = url;
     });
-  })();
+  }
 
-  /* ===== About image verification (keeps .jpeg) ===== */
-  (function ensureAboutImage() {
-    const imgEl = document.getElementById('about-img');
-    if (!imgEl) return;
-    const tester = new Image();
-    tester.onload = () => console.info('[about] image loaded:', imgEl.src);
-    tester.onerror = () => {
-      const altUrl = 'images/neha_jorewar_about_me.jpeg';
-      console.warn('[about] initial about image failed. Trying', altUrl);
-      imgEl.src = altUrl;
-      imgEl.removeAttribute('srcset');
-    };
-    tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
-  })();
-
-  /* ===== Bridal modal gallery (bridal_01.jpeg .. bridal_12.jpeg) ===== */
-  (function bridalModal() {
-    const openBtns = document.querySelectorAll('.open-bridal-gallery');
-    const modal = document.getElementById('bridal-modal');
-    if (!modal) { console.warn('[bridal] modal not found'); return; }
-    const backdrop = modal.querySelector('.modal-backdrop');
-    const modalPanel = modal.querySelector('.modal-panel');
-    const mainImg = document.getElementById('bridal-modal-main');
-    const spinner = document.getElementById('modal-spinner');
-    const modalWrap = document.getElementById('modal-image-wrap');
-    const caption = document.getElementById('bridal-caption');
-    const thumbsContainer = document.getElementById('bridal-thumbs');
-    const prevBtn = modal.querySelector('[data-action="prev"]');
-    const nextBtn = modal.querySelector('[data-action="next"]');
-    const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
-
-    const folder = 'images/Bridal';
-    const MAX = 12;
-    const pad = n => n.toString().padStart(2,'0');
-    const candidates = [];
-    for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
-
-    function testImage(url, timeout = 5000){
-      return new Promise((resolve) => {
-        const img = new Image();
-        let done = false;
-        const tidy = ok => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
-        img.onload = () => tidy(true);
-        img.onerror = () => tidy(false);
-        setTimeout(() => tidy(false), timeout);
-        img.src = url;
-      });
+  async function discover() {
+    const found = [];
+    console.groupCollapsed('[bridal] discovery tests');
+    for (const url of candidates) {
+      // eslint-disable-next-line no-await-in-loop
+      const res = await testImage(url);
+      console.debug('[bridal] test', url, '=>', res.ok);
+      if (res.ok) found.push(url);
     }
+    console.groupEnd();
+    console.info('[bridal] discovery complete — found', found.length, 'images');
+    return found;
+  }
 
-    async function discover() {
-      const found = [];
-      console.groupCollapsed('[bridal] discovery tests');
-      for (const url of candidates) {
-        // sequential check (friendly)
-        // eslint-disable-next-line no-await-in-loop
-        const res = await testImage(url);
-        console.debug('[bridal] test', url, '=>', res.ok);
-        if (res.ok) found.push(url);
-      }
-      console.groupEnd();
-      console.info('[bridal] discovery complete — found', found.length, 'images');
-      return found;
+  let images = [];
+  let current = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_MS = 3000;
+
+  function showSpinner(show = true){
+    if (!spinner) return;
+    spinner.classList.toggle('visible', !!show);
+    spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
+  }
+
+  function buildGallery(list){
+    thumbsContainer.innerHTML = '';
+    if (!list || list.length === 0){
+      thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
+      mainImg.src = ''; caption.textContent = '';
+      return;
     }
-
-    let images = [];
-    let current = 0;
-    let autoplayTimer = null;
-    const AUTOPLAY_MS = 3000;
-
-    function showSpinner(show = true){
-      if (!spinner) return;
-      spinner.classList.toggle('visible', !!show);
-      spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
-    }
-
-    function buildGallery(list){
-      thumbsContainer.innerHTML = '';
-      if (!list || list.length === 0){
-        thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
-        mainImg.src = ''; caption.textContent = '';
-        return;
-      }
-      list.forEach((src,i)=>{
-        const btn = document.createElement('button');
-        btn.className = 'thumb';
-        btn.type = 'button';
-        btn.setAttribute('data-index', i);
-        btn.setAttribute('role','tab');
-        btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
-        btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
-        btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
-        btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
-        thumbsContainer.appendChild(btn);
-      });
-      showIndex(0);
-    }
-
-    function showIndex(i){
-      if (!images || images.length === 0) return;
-      i = (i + images.length) % images.length;
-      current = i;
-      // show spinner until main image loads
-      showSpinner(true);
-      // detach previous onload (safety)
-      mainImg.onload = () => {
-        showSpinner(false);
-      };
-      mainImg.onerror = () => {
-        showSpinner(false);
-        console.warn('[bridal] failed to load main image:', images[i]);
-      };
-      mainImg.src = images[i];
-      mainImg.alt = `Bridal image ${i+1}`;
-      caption.textContent = `Image ${i+1} of ${images.length}`;
-      const thumbs = thumbsContainer.querySelectorAll('.thumb');
-      thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
-      const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
-      selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-      // ensure zoom is off when switching image
-      if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
-    }
-
-    function next(){ showIndex(current + 1); }
-    function prev(){ showIndex(current - 1); }
-
-    function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
-    function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
-    function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-    function openModal(){
-      modal.setAttribute('aria-hidden','false');
-      modalPanel && modalPanel.focus();
-      startAutoplay();
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      modal.setAttribute('aria-hidden','true');
-      stopAutoplay();
-      document.body.style.overflow = '';
-      // remove zoom if any
-      if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
-      openBtns.length && openBtns[0].focus();
-    }
-
-    prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
-    nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
-    closeBtn && closeBtn.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
-
-    modal.addEventListener('keydown', (ev)=> {
-      if (modal.getAttribute('aria-hidden') === 'true') return;
-      if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
-      if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
-      if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+    list.forEach((src,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'thumb';
+      btn.type = 'button';
+      btn.setAttribute('data-index', i);
+      btn.setAttribute('role','tab');
+      btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
+      btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
+      btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
+      btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
+      thumbsContainer.appendChild(btn);
     });
+    showIndex(0);
+  }
 
-    modal.addEventListener('mouseenter', stopAutoplay);
-    modal.addEventListener('mouseleave', startAutoplay);
-    modal.addEventListener('focusin', stopAutoplay);
-    modal.addEventListener('focusout', startAutoplay);
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
 
-    // zoom toggle: click main image to toggle zoomed state
-    mainImg.addEventListener('click', () => {
-      if (!modalWrap) return;
-      modalWrap.classList.toggle('zoomed');
-      // when zoomed, ensure spinner hidden
+  function showIndex(i){
+    if (!images || images.length === 0) return;
+    i = (i + images.length) % images.length;
+    current = i;
+
+    // show spinner until image loaded
+    showSpinner(true);
+
+    // ensure any previous onload handlers cleared
+    mainImg.onload = () => {
       showSpinner(false);
-    });
+      // ensure image fits when initially shown (remove any inline zoom sizing)
+      mainImg.style.width = '';
+      mainImg.style.height = '';
+      // remove zoom class on load
+      modalWrap.classList.remove('zoomed');
+      // ensure wrapper scroll reset
+      modalWrap.scrollLeft = 0;
+      modalWrap.scrollTop = 0;
+    };
+    mainImg.onerror = () => {
+      showSpinner(false);
+      console.warn('[bridal] failed to load main image:', images[i]);
+    };
 
-    // also allow double-click to open in new tab (convenience)
-    mainImg.addEventListener('dblclick', () => {
-      if (mainImg.src) window.open(mainImg.src, '_blank');
-    });
+    mainImg.src = images[i];
+    mainImg.alt = `Bridal image ${i+1}`;
+    caption.textContent = `Image ${i+1} of ${images.length}`;
+    const thumbs = thumbsContainer.querySelectorAll('.thumb');
+    thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+    const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
+    selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
 
-    openBtns.forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        if (images.length === 0){
-          modal.setAttribute('aria-hidden','false'); // minimal overlay while discovering
-          const found = await discover();
-          images = found;
-          buildGallery(images);
-        } else {
-          buildGallery(images);
-        }
-        openModal();
+    // if zoom currently active, turn it off (we reset to fit)
+    if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
+  }
+
+  function next(){ showIndex(current + 1); }
+  function prev(){ showIndex(current - 1); }
+
+  function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
+  function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
+  function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+  function openModal(){
+    modal.setAttribute('aria-hidden','false');
+    modalPanel && modalPanel.focus();
+    startAutoplay();
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.setAttribute('aria-hidden','true');
+    stopAutoplay();
+    document.body.style.overflow = '';
+    // remove zoom
+    if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
+    openBtns.length && openBtns[0].focus();
+  }
+
+  prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+  nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
+
+  modal.addEventListener('keydown', (ev)=> {
+    if (modal.getAttribute('aria-hidden') === 'true') return;
+    if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
+    if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
+    if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+  });
+
+  modal.addEventListener('mouseenter', stopAutoplay);
+  modal.addEventListener('mouseleave', startAutoplay);
+  modal.addEventListener('focusin', stopAutoplay);
+  modal.addEventListener('focusout', startAutoplay);
+
+  // Point-based zoom on click:
+  // - If not zoomed: compute click relative position, expand image to natural size (or 1.6x if natural smaller),
+  //   then set modalWrap.scrollLeft/Top so clicked point stays centered.
+  // - If zoomed: revert to fit-to-screen (remove inline sizes and scroll).
+  mainImg.addEventListener('click', (e) => {
+    if (!mainImg.complete) return; // if still loading, ignore
+    const wasZoomed = modalWrap.classList.contains('zoomed');
+
+    if (wasZoomed) {
+      // unzoom: remove inline sizing and reset scroll
+      modalWrap.classList.remove('zoomed');
+      mainImg.style.width = '';
+      mainImg.style.height = '';
+      // nice smooth reset to top-left of image area
+      modalWrap.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // compute click point relative to image as fraction BEFORE resizing
+    const rect = mainImg.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width; // 0..1
+    const relY = (e.clientY - rect.top) / rect.height; // 0..1
+
+    // natural size
+    const natW = mainImg.naturalWidth || rect.width;
+    const natH = mainImg.naturalHeight || rect.height;
+
+    // If natural is larger than displayed -> zoom to natural; otherwise use a modest scale (1.6)
+    const displayW = rect.width;
+    const displayH = rect.height;
+    let targetW = natW;
+    let targetH = natH;
+    if (natW <= displayW || natH <= displayH) {
+      // natural not larger than display — use modest zoom scale
+      const scale = 1.6;
+      targetW = Math.round(displayW * scale);
+      targetH = Math.round(displayH * scale);
+    }
+
+    // apply zoom sizing (inline) and add zoomed class so wrapper scrolls
+    mainImg.style.width = targetW + 'px';
+    mainImg.style.height = 'auto';
+    // ensure image finished resizing in layout before computing scroll values
+    // use requestAnimationFrame twice for safety
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        modalWrap.classList.add('zoomed');
+        // compute new image dimensions
+        const newRect = mainImg.getBoundingClientRect();
+        const newW = newRect.width;
+        const newH = newRect.height;
+        // compute target scroll so the clicked point is centered
+        const clickXInNew = relX * newW;
+        const clickYInNew = relY * newH;
+        const targetScrollLeft = clamp(Math.round(clickXInNew - (modalWrap.clientWidth / 2)), 0, Math.max(0, newW - modalWrap.clientWidth));
+        const targetScrollTop = clamp(Math.round(clickYInNew - (modalWrap.clientHeight / 2)), 0, Math.max(0, newH - modalWrap.clientHeight));
+        modalWrap.scrollTo({ left: targetScrollLeft, top: targetScrollTop, behavior: 'smooth' });
       });
     });
+  });
 
-    // pre-discover quietly
-    setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
-  })();
-  </script>
+  // double click opens image in new tab
+  mainImg.addEventListener('dblclick', () => {
+    if (mainImg.src) window.open(mainImg.src, '_blank');
+  });
+
+  // ensure zoom off when changing slides (both via arrows or thumbnails)
+  function ensureZoomOff() {
+    if (modalWrap.classList.contains('zoomed')) {
+      modalWrap.classList.remove('zoomed');
+      mainImg.style.width = '';
+      mainImg.style.height = '';
+      modalWrap.scrollLeft = 0;
+      modalWrap.scrollTop = 0;
+    }
+  }
+
+  // integrate ensureZoomOff into navigation handlers
+  prevBtn && prevBtn.addEventListener('click', ensureZoomOff);
+  nextBtn && nextBtn.addEventListener('click', ensureZoomOff);
+
+  // build thumbnails click already calls showIndex which will reset zoom (showIndex removes zoom)
+  // open buttons
+  openBtns.forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      if (images.length === 0){
+        modal.setAttribute('aria-hidden','false'); // minimal overlay while discovering
+        const found = await discover();
+        images = found;
+        buildGallery(images);
+      } else {
+        buildGallery(images);
+      }
+      openModal();
+    });
+  });
+
+  // pre-discover quietly
+  setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
+})(); // end bridalModal
+</script>
 </body>
 </html>
 
