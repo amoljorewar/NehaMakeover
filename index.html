@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Neha Jorewar Makeover & Hairstyling Studio</title>
     <meta name="description" content="Neha Jorewar — Makeover & Hairstyling Studio. Bridal, party, fashion makeup and hairstyling services in Buldana. Book an appointment today." />
-    <!-- Open Graph (simple) -->
     <meta property="og:title" content="Neha Jorewar Makeover & Hairstyling Studio" />
     <meta property="og:description" content="Bridal, party & fashion makeup and hairstyling. Book your appointment." />
     <meta property="og:type" content="website" />
@@ -15,134 +14,131 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
     <style>
         :root {
-            --nav-height: 64px; /* update if navbar height changes */
+            --nav-height: 64px;
             --accent: #7a2253;
             --bg-weak: #fff7fa;
         }
-
-        /* Reset & Global */
-        * { box-sizing: border-box; }
-        html,body { height: 100%; }
+        *{box-sizing:border-box}
+        html,body{height:100%}
         body {
             margin: 0;
             font-family: "Inter", sans-serif;
             background: var(--bg-weak);
             color: #333;
             scroll-behavior: smooth;
-            padding-top: var(--nav-height); /* avoid content under fixed navbar */
+            padding-top: var(--nav-height);
         }
+        h1,h2,h3{font-family:"Playfair Display",serif;color:var(--accent);margin:0 0 12px 0}
+        a{color:inherit;text-decoration:none}
+        section{padding:80px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(30px);animation:fadeIn .9s forwards}
+        @keyframes fadeIn{to{opacity:1;transform:none}}
 
-        h1, h2, h3 { font-family: "Playfair Display", serif; color: var(--accent); margin: 0 0 12px 0; }
-        a { text-decoration: none; color: inherit; }
-        section { padding: 80px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(30px); animation: fadeIn 1s forwards; }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0);} }
+        /* skip link */
+        .skip-link{position:absolute;left:-9999px;top:auto;background:#fff;padding:8px 12px;z-index:10000}
+        .skip-link:focus{left:8px;top:8px;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,.12)}
 
-        /* Skip link accessible */
-        .skip-link { position: absolute; left: -9999px; top: auto; background: #fff; padding: 8px 12px; z-index: 10000; }
-        .skip-link:focus { left: 8px; top: 8px; border-radius: 6px; box-shadow: 0 4px 8px rgba(0,0,0,0.12); }
-
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 24px;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #f3cfe0;
-            z-index: 999;
+        /* NAV */
+        .navbar{
+            position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #f3cfe0;z-index:999
         }
-        .brand { font-family: "Playfair Display", serif; font-size: 1.1rem; font-weight: 600; color: var(--accent); }
-        nav[role="navigation"] .nav-links { display:flex; gap:22px; align-items:center; }
-        .nav-links a { font-weight: 500; color: var(--accent); }
-        .nav-links a:hover, .nav-links a:focus { color: #d36ba6; outline: none; }
+        .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
+        nav[role="navigation"] .nav-links{display:flex;gap:22px;align-items:center}
+        .nav-links a{font-weight:500;color:var(--accent)}
+        .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
 
-        /* Hamburger */
-        #menu-toggle { position: absolute; left: -9999px; } /* visually hide but present in DOM */
-        .hamburger { display:none; cursor:pointer; gap:5px; flex-direction:column; }
-        .hamburger span { display:block; height:3px; width:26px; background:var(--accent); border-radius:2px; transition: transform .2s; }
-        .hamburger:focus { outline: 2px solid #ffd6ea; outline-offset: 4px; }
+        #menu-toggle{position:absolute;left:-9999px}
+        .hamburger{display:none;cursor:pointer;gap:5px;flex-direction:column}
+        .hamburger span{display:block;height:3px;width:26px;background:var(--accent);border-radius:2px}
+        .hamburger:focus{outline:2px solid #ffd6ea;outline-offset:4px}
 
         /* HERO */
-        .hero {
-            min-height: calc(90vh - var(--nav-height));
-            background: url("images/main_background.jpeg") center/cover no-repeat;
-            position: relative;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            color:white;
-            padding: 40px 20px;
+        .hero{
+            min-height:calc(90vh - var(--nav-height));
+            background:url("images/main_background.jpeg") center/cover no-repeat;
+            position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px
         }
-        .hero::after { content:""; position:absolute; inset:0; background: rgba(0,0,0,0.45); }
-        .hero-content { position:relative; z-index:2; animation: fadeInHero 1.2s ease-out forwards; max-width: 900px; }
-        @keyframes fadeInHero { 0%{ opacity:0; transform:translateY(40px);} 100%{opacity:1; transform:none;} }
-        .hero h1 { font-size:2.6rem; margin-bottom:8px; color:white; }
-        .hero h2 { font-size:1.6rem; font-weight:400; color:white; margin-top:0; }
-        .hero p { margin: 14px 0 22px; font-size:1.05rem; color: #f7eaf1; }
-        .hero button { padding:12px 32px; background: linear-gradient(45deg,#d36ba6,#b8588e); border:none; border-radius:25px; color:white; cursor:pointer; font-size:1rem; }
+        .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+        .hero-content{position:relative;z-index:2;animation:fadeInHero 1.2s ease-out forwards;max-width:900px}
+        @keyframes fadeInHero{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:none}}
+        .hero h1{font-size:2.6rem;margin-bottom:8px;color:white}
+        .hero h2{font-size:1.6rem;font-weight:400;color:white;margin-top:0}
+        .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
+        .hero button{padding:12px 32px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
 
         /* SERVICES */
-        .services h2 { text-align:center; margin-bottom:40px; }
-        .service-list { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:25px; }
-        .service-box { background:white; padding:22px; border-radius:12px; border:1px solid #f3d7e8; text-align:center; transition: transform .25s, box-shadow .25s; }
-        .service-box i { font-size:2.2rem; color:#d36ba6; margin-bottom:10px; }
-        .service-box:hover { transform: translateY(-6px); box-shadow:0 10px 20px rgba(0,0,0,0.06); }
+        .services h2{text-align:center;margin-bottom:40px}
+        .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
+        .service-box{background:white;padding:22px;border-radius:12px;border:1px solid #f3d7e8;text-align:center;transition:transform .25s,box-shadow .25s}
+        .service-box i{font-size:2.2rem;color:#d36ba6;margin-bottom:10px}
+        .service-box:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+        .service-box .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,#d36ba6,#b8588e);color:#fff;border:none;cursor:pointer}
 
         /* ABOUT */
-        .about { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
-        .about img { width:360px; border-radius:15px; object-fit:cover; max-width:100%; height:auto; }
+        .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+        .about img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto}
 
         /* TESTIMONIALS */
-        .testimonials { text-align:center; }
-        .testimonial-slider { max-width:700px; margin:auto; background:white; padding:30px; border-radius:12px; border:1px solid #f3d7e8; }
-        .testimonial { display:none; }
-        .testimonial.active { display:block; animation: fadeIn 0.6s; }
+        .testimonials{text-align:center}
+        .testimonial-slider{max-width:700px;margin:auto;background:white;padding:30px;border-radius:12px;border:1px solid #f3d7e8}
+        .testimonial{display:none}
+        .testimonial.active{display:block;animation:fadeIn .6s}
 
         /* CONTACT FORM */
-        form { max-width:600px; margin:30px auto 0; padding:30px; background:white; border-radius:12px; border:1px solid #f3d7e8; }
-        form input, form textarea { width:100%; margin-top:12px; padding:12px; border-radius:8px; border:1px solid #ccc; font-family:inherit; }
-        form button { margin-top:20px; width:100%; padding:14px; background: linear-gradient(45deg,#d36ba6,#b8588e); border:none; color:white; border-radius:8px; cursor:pointer; font-size:1rem; }
-
-        .form-message { display:none; margin-top:15px; padding:12px 20px; border-radius:8px; font-weight:500; text-align:center; font-size:0.95rem; opacity:0; transition: opacity .5s; }
-        .form-message.success { background: linear-gradient(90deg,#d36ba6,#b8588e); color:white; }
-        .form-message.error { background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; }
+        form{max-width:600px;margin:30px auto 0;padding:30px;background:white;border-radius:12px;border:1px solid #f3d7e8}
+        form input, form textarea{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #ccc;font-family:inherit}
+        form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
+        .form-message{display:none;margin-top:15px;padding:12px 20px;border-radius:8px;font-weight:500;text-align:center;font-size:.95rem;opacity:0;transition:opacity .5s}
+        .form-message.success{background:linear-gradient(90deg,#d36ba6,#b8588e);color:white}
+        .form-message.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
 
         /* FOOTER */
-        footer { background:#ffeaf3; padding:25px; text-align:center; margin-top:30px; }
-        .social a { margin:0 10px; font-size:1.5rem; color:var(--accent); }
+        footer{background:#ffeaf3;padding:25px;text-align:center;margin-top:30px}
+        .social a{margin:0 10px;font-size:1.5rem;color:var(--accent)}
 
         /* WHATSAPP FLOAT */
-        .whatsapp-float { position:fixed; bottom:25px; right:25px; background:#25d366; color:white; padding:14px 17px; border-radius:50%; font-size:1.8rem; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:999; display:flex; align-items:center; justify-content:center; }
+        .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:white;padding:14px 17px;border-radius:50%;font-size:1.8rem;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;justify-content:center}
 
-        /* RESPONSIVE */
-        @media (max-width:768px) {
-            .hero h1 { font-size:2.2rem; }
-            .nav-links {
-                position:absolute; top:calc(var(--nav-height)); right:8px; background:#fff7fa; flex-direction:column; width:220px;
-                padding:15px; border-radius:0 0 10px 10px; border:1px solid #f3d7e8;
-                transform: translateY(-6px); opacity:0; pointer-events:none; transition: transform .25s, opacity .25s;
+        /* RESPONSIVE NAV */
+        @media (max-width:768px){
+            .hero h1{font-size:2.2rem}
+            .nav-links{
+                position:absolute;top:calc(var(--nav-height));right:8px;background:#fff7fa;flex-direction:column;width:220px;padding:15px;border-radius:0 0 10px 10px;border:1px solid #f3d7e8;transform:translateY(-6px);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s
             }
-            #menu-toggle:checked ~ label.hamburger + .nav-links {
-                opacity:1; transform:none; pointer-events:auto;
-            }
-            .hamburger { display:flex; }
-            nav[role="navigation"] .nav-links a { padding:8px 6px; display:block; }
-            .about { flex-direction:column; align-items:flex-start; }
+            #menu-toggle:checked ~ label.hamburger + .nav-links{opacity:1;transform:none;pointer-events:auto}
+            .hamburger{display:flex}
+            nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
+            .about{flex-direction:column;align-items:flex-start}
+        }
+        @media (min-width:769px){
+            .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important}
         }
 
-        @media (min-width:769px) {
-            .nav-links { opacity:1 !important; transform:none !important; pointer-events:auto !important; }
+        /* ----------------- BRIDAL MODAL STYLES ----------------- */
+        .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
+        .modal[aria-hidden="false"]{display:flex}
+        .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+        .modal-panel{position:relative;width:95%;max-width:1100px;max-height:92vh;margin:auto;z-index:2;outline:none;display:flex;flex-direction:column;border-radius:12px}
+        .modal-content{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+        .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
+        .modal-main{display:flex;align-items:center;gap:8px;position:relative}
+        .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:380px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6}
+        .modal-image-wrap img{width:100%;height:100%;object-fit:contain;display:block;user-select:none}
+        .modal-arrow{background:rgba(255,255,255,.95);border:none;width:44px;height:44px;border-radius:50%;box-shadow:0 8px 18px rgba(0,0,0,.12);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+        .modal-arrow:focus,.modal-close:focus{outline:3px solid #ffd6ea}
+        .modal-thumbs-wrap{overflow-x:auto;padding:6px 4px}
+        .modal-thumbs{display:flex;gap:8px;align-items:center}
+        .modal-thumbs .thumb{border:2px solid transparent;border-radius:6px;padding:3px;background:transparent;cursor:pointer}
+        .modal-thumbs .thumb img{width:84px;height:60px;object-fit:cover;border-radius:4px;display:block}
+        .modal-thumbs .thumb[aria-selected="true"]{border-color:#d36ba6;box-shadow:0 8px 20px rgba(211,107,166,.12)}
+        .modal-caption{margin-top:6px;text-align:center;color:#444;font-size:.95rem}
+        @media (max-width:800px){
+            .modal-image-wrap{min-height:220px}
+            .modal-thumbs .thumb img{width:64px;height:46px}
+            .modal-arrow{width:38px;height:38px;font-size:22px}
         }
     </style>
 </head>
@@ -153,7 +149,6 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="brand">Neha Jorewar Studio</div>
 
-        <!-- accessible toggle -->
         <input id="menu-toggle" type="checkbox" aria-hidden="false" />
         <label for="menu-toggle" class="hamburger" tabindex="0" aria-controls="primary-navigation" aria-label="Toggle menu">
             <span></span><span></span><span></span>
@@ -167,8 +162,8 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <main id="maincontent">
+    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-heading">
         <div class="hero-content">
             <h1 id="hero-heading">Neha Jorewar — Makeover & Hairstyling Studio</h1>
@@ -181,23 +176,28 @@
     <!-- SERVICES -->
     <section class="services" id="services" aria-labelledby="services-heading">
         <h2 id="services-heading">Our Services</h2>
-        <div class="service-list" role="list">
-            <div class="service-box" role="listitem" aria-label="Bridal Makeup">
+        <div class="service-list">
+            <!-- BRIDAL: open modal button -->
+            <div class="service-box">
                 <i class="fa-solid fa-ring" aria-hidden="true"></i>
                 <h3>Bridal Makeup</h3>
                 <p>Elegant, long-lasting bridal looks tailored to your personality.</p>
+                <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">
+                    View Bridal Gallery
+                </button>
             </div>
-            <div class="service-box" role="listitem" aria-label="Party Makeup">
+
+            <div class="service-box">
                 <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
                 <h3>Party Makeup</h3>
                 <p>Perfect glam for celebrations, parties, and events.</p>
             </div>
-            <div class="service-box" role="listitem" aria-label="Hairstyling">
+            <div class="service-box">
                 <i class="fa-solid fa-scissors" aria-hidden="true"></i>
                 <h3>Hairstyling</h3>
                 <p>Customized hairstyles from curls to buns, modern to classic.</p>
             </div>
-            <div class="service-box" role="listitem" aria-label="Makeup Consultation">
+            <div class="service-box">
                 <i class="fa-solid fa-comments" aria-hidden="true"></i>
                 <h3>Makeup Consultation</h3>
                 <p>Personalized product and style guidance.</p>
@@ -207,7 +207,6 @@
 
     <!-- ABOUT -->
     <section class="about" id="about" aria-labelledby="about-heading">
-        <!-- responsive image with srcset for different sizes -->
         <img src="images/neha_jorewar_about_me.jpeg"
              srcset="images/neha_jorewar_about_me-480.jpg 480w, images/neha_jorewar_about_me-800.jpg 800w, images/neha_jorewar_about_me.jpeg 1200w"
              sizes="(max-width:600px) 100vw, 360px"
@@ -253,7 +252,6 @@
         <p id="form-success" class="form-message success" role="status">✔ Thank you! Your message has been sent.</p>
         <p id="form-error" class="form-message error" role="alert">✖ Oops! Something went wrong. Please try again.</p>
     </section>
-
     </main>
 
     <!-- FOOTER -->
@@ -269,106 +267,220 @@
     <!-- WHATSAPP FLOAT BUTTON -->
     <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 
+    <!-- BRIDAL GALLERY MODAL (placed before closing body) -->
+    <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-panel" role="document" tabindex="-1">
+        <button class="modal-close" aria-label="Close gallery" data-action="close">✕</button>
+
+        <div class="modal-content">
+          <div class="modal-main">
+            <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
+            <div class="modal-image-wrap">
+              <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
+              <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
+            </div>
+            <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
+          </div>
+
+          <div class="modal-thumbs-wrap">
+            <div id="bridal-thumbs" class="modal-thumbs" role="tablist" aria-label="Bridal thumbnails"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script>
-        /* -------- Testimonial slider (robust) -------- */
-        (function(){
-            const testimonials = document.querySelectorAll('.testimonial');
-            if (!testimonials || testimonials.length === 0) return;
-            let idx = 0;
-            // initially ensure exactly one active
-            testimonials.forEach((t, i) => t.classList.toggle('active', i === 0));
-            setInterval(() => {
-                testimonials.forEach(t => t.classList.remove('active'));
-                testimonials[idx].classList.add('active');
-                idx = (idx + 1) % testimonials.length;
-            }, 3000);
-        })();
+    /* Testimonial slider (robust) */
+    (function(){
+        const testimonials = document.querySelectorAll('.testimonial');
+        if (!testimonials || testimonials.length === 0) return;
+        let idx = 0;
+        testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
+        setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
+    })();
 
-        /* -------- Contact form AJAX (keeps existing logic, with small guard) -------- */
-        (function(){
-            const form = document.getElementById('contact-form');
-            const successMessage = document.getElementById('form-success');
-            const errorMessage = document.getElementById('form-error');
-            if (!form) return;
+    /* Contact form AJAX */
+    (function(){
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success');
+        const errorMessage = document.getElementById('form-error');
+        if (!form) return;
+        form.addEventListener('submit', async function(e){
+            e.preventDefault();
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
+                if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
+            } catch (err) { showMessage(errorMessage); }
+        });
+        function showMessage(element) {
+            element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
+            setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
+        }
+    })();
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const formData = new FormData(form);
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    if (response.ok) {
-                        form.reset();
-                        showMessage(successMessage);
-                    } else {
-                        throw new Error('Network response was not ok.');
-                    }
-                } catch (error) {
-                    showMessage(errorMessage);
-                }
+    /* Accessible mobile menu */
+    (function(){
+        const checkbox = document.getElementById('menu-toggle');
+        const label = document.querySelector('label.hamburger');
+        const nav = document.getElementById('primary-navigation');
+        if (!checkbox || !label || !nav) return;
+        function updateAria(){ const expanded = checkbox.checked; label.setAttribute('aria-expanded', String(expanded)); nav.setAttribute('data-open', expanded ? 'true' : 'false'); }
+        checkbox.addEventListener('change', updateAria);
+        label.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); checkbox.checked=!checkbox.checked; updateAria(); } });
+        updateAria();
+    })();
+
+    /* WhatsApp cross-device link logic */
+    (function(){
+        const phone = "917020588760";
+        const links = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
+        const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+        links.forEach(id=>{
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+            el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+        });
+    })();
+
+    /* ---------------- BRIDAL MODAL GALLERY (uses exact filenames bridal_01..bridal_12) ---------------- */
+    (function(){
+        const openBtns = document.querySelectorAll('.open-bridal-gallery');
+        const modal = document.getElementById('bridal-modal');
+        const backdrop = modal && modal.querySelector('.modal-backdrop');
+        const mainImg = modal && document.getElementById('bridal-modal-main');
+        const caption = modal && document.getElementById('bridal-caption');
+        const thumbsContainer = modal && document.getElementById('bridal-thumbs');
+        const prevBtn = modal && modal.querySelector('[data-action="prev"]');
+        const nextBtn = modal && modal.querySelector('[data-action="next"]');
+        const closeBtn = modal && modal.querySelector('[data-action="close"], .modal-close');
+
+        if (!modal || !mainImg || !thumbsContainer) return;
+
+        // Configuration: exact filenames with leading zeroes
+        const folder = 'images/Bridal';
+        const MAX = 12;
+        const pad = (n) => n.toString().padStart(2,'0'); // 01,02,...
+        const candidates = [];
+        for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpg`); }
+
+        // test a single image url, resolves ok flag
+        function testImage(url){
+            return new Promise((resolve)=>{
+                const img = new Image();
+                img.onload = () => resolve({ ok: true, url });
+                img.onerror = () => resolve({ ok: false, url });
+                img.src = url;
             });
+        }
 
-            function showMessage(element) {
-                element.style.display = 'block';
-                // force reflow for transition
-                void element.offsetWidth;
-                element.style.opacity = '1';
-                setTimeout(() => {
-                    element.style.opacity = '0';
-                    setTimeout(() => { element.style.display = 'none'; }, 500);
-                }, 5000);
+        // discover images sequentially to avoid many parallel requests
+        async function discover(){
+            const found = [];
+            for (const url of candidates){
+                // eslint-disable-next-line no-await-in-loop
+                const res = await testImage(url);
+                if (res.ok) found.push(url);
             }
-        })();
+            return found;
+        }
 
-        /* -------- Accessible mobile menu: toggle aria-expanded on checkbox change -------- */
-        (function(){
-            const checkbox = document.getElementById('menu-toggle');
-            const label = document.querySelector('label.hamburger');
-            const nav = document.getElementById('primary-navigation');
-            if (!checkbox || !label || !nav) return;
+        // state
+        let images = [];
+        let current = 0;
+        let autoplayTimer = null;
+        const AUTOPLAY_MS = 3000;
 
-            // update aria-expanded on change
-            function updateAria() {
-                const expanded = checkbox.checked;
-                label.setAttribute('aria-expanded', String(expanded));
-                nav.setAttribute('data-open', expanded ? 'true' : 'false');
+        function buildGallery(list){
+            thumbsContainer.innerHTML = '';
+            if (!list || list.length === 0){
+                thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in ' + folder + '</p>';
+                mainImg.src = ''; caption.textContent = '';
+                return;
             }
-            checkbox.addEventListener('change', updateAria);
-            // keyboard toggle on label (space/enter)
-            label.addEventListener('keydown', (ev) => {
-                if (ev.key === 'Enter' || ev.key === ' ') {
-                    ev.preventDefault();
-                    checkbox.checked = !checkbox.checked;
-                    updateAria();
-                }
+            list.forEach((src,i)=>{
+                const btn = document.createElement('button');
+                btn.className = 'thumb';
+                btn.type = 'button';
+                btn.setAttribute('data-index', i);
+                btn.setAttribute('role','tab');
+                btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
+                btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
+                btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
+                btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
+                thumbsContainer.appendChild(btn);
             });
-            // set initial
-            updateAria();
-        })();
+            showIndex(0);
+        }
 
-        /* -------- WhatsApp cross-device link logic (robust) -------- */
-        (function(){
-            const phone = "917020588760";
-            const links = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
-            const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-            links.forEach(id => {
-                const el = document.getElementById(id);
-                if (!el) return;
-                // include a pre-filled message (optional) - uncomment if you want it
-                // const text = encodeURIComponent("Hi Neha, I'd like to book an appointment.");
-                if (isMobile) {
-                    el.href = `https://wa.me/${phone}`; // mobile app will handle
+        function showIndex(i){
+            if (!images || images.length === 0) return;
+            i = (i + images.length) % images.length;
+            current = i;
+            mainImg.src = images[i];
+            mainImg.alt = `Bridal image ${i+1}`;
+            caption.textContent = `Image ${i+1} of ${images.length}`;
+            const thumbs = thumbsContainer.querySelectorAll('.thumb');
+            thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+            const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
+            selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+        }
+
+        function next(){ showIndex(current + 1); }
+        function prev(){ showIndex(current - 1); }
+
+        function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
+        function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
+        function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+        function openModal(){
+            modal.setAttribute('aria-hidden','false');
+            const panelEl = modal.querySelector('.modal-panel');
+            panelEl && panelEl.focus();
+            startAutoplay(); document.body.style.overflow = 'hidden';
+        }
+        function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
+
+        prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+        nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+        closeBtn && closeBtn.addEventListener('click', closeModal);
+        if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
+
+        modal.addEventListener('keydown', (ev)=> {
+            if (modal.getAttribute('aria-hidden') === 'true') return;
+            if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
+            if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
+            if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+        });
+
+        modal.addEventListener('mouseenter', stopAutoplay);
+        modal.addEventListener('mouseleave', startAutoplay);
+        modal.addEventListener('focusin', stopAutoplay);
+        modal.addEventListener('focusout', startAutoplay);
+
+        // When user clicks "View Bridal Gallery"
+        openBtns.forEach(btn=>{
+            btn.addEventListener('click', async ()=>{
+                // if not discovered yet, do so
+                if (images.length === 0){
+                    modal.setAttribute('aria-hidden','false'); // show minimal overlay while discovering
+                    const found = await discover();
+                    images = found;
+                    buildGallery(images);
                 } else {
-                    el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+                    buildGallery(images);
                 }
-                el.setAttribute('rel', 'noopener noreferrer');
-                el.setAttribute('target', '_blank');
+                openModal();
             });
-        })();
+        });
+
+        // optional: background discover (non-blocking) after small delay
+        setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
+
+    })();
     </script>
 </body>
 </html>
