@@ -9,12 +9,20 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Font Awesome (kept for other icons) -->
+  <!-- Font Awesome kept for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    :root { --nav-height:64px; --accent:#7a2253; --bg-weak:#fff7fa; --spinner-size:48px; }
-    *{box-sizing:border-box} html,body{height:100%}
+    :root{
+      --nav-height:64px;
+      --accent:#7a2253;
+      --accent-2:#d36ba6;
+      --bg-weak:#fff7fa;
+      --card-bg:#fff;
+      --card-border:#f3d7e8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{margin:0;font-family:"Inter",sans-serif;background:var(--bg-weak);color:#333;scroll-behavior:smooth;padding-top:var(--nav-height)}
     h1,h2,h3{font-family:"Playfair Display",serif;color:var(--accent);margin:0 0 12px 0}
     a{color:inherit;text-decoration:none}
@@ -28,7 +36,7 @@
     .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
     .nav-links{display:flex;gap:22px;align-items:center}
     .nav-links a{font-weight:500;color:var(--accent)}
-    .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
+    .nav-links a:hover,.nav-links a:focus{color:var(--accent-2);outline:none}
 
     /* hamburger button (JS-driven) */
     .hamburger{
@@ -45,7 +53,7 @@
     }
     .hamburger svg { display:block; width:22px; height:16px; }
     .hamburger:focus{outline:3px solid #ffd6ea; outline-offset:3px}
-    .hamburger .bar { fill: var(--accent); } /* for inline svg bars */
+    .hamburger .bar { fill: var(--accent); }
 
     /* HERO */
     .hero{min-height:calc(90vh - var(--nav-height));background:url("images/main_background.jpeg") center/cover no-repeat;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px}
@@ -55,33 +63,49 @@
     .hero h1{font-size:2.6rem;margin-bottom:8px;color:white}
     .hero h2{font-size:1.6rem;font-weight:400;color:white;margin-top:0}
     .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
-    .hero button{padding:12px 32px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
+    .hero button{padding:12px 32px;background:linear-gradient(45deg,var(--accent-2),#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
 
-    /* SERVICES */
+    /* CARD (used for services and about) */
+    .card {
+      background: var(--card-bg);
+      padding:22px;
+      border-radius:12px;
+      border:1px solid var(--card-border);
+      text-align:left;
+      transition:transform .25s,box-shadow .25s;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+    .card .icon{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
+    .card .card-body{display:flex;gap:16px;align-items:center}
+    .card .card-body img{width:140px;border-radius:10px;object-fit:cover;height:auto;max-width:40%}
+    .card h3{margin:0 0 6px 0}
+    .card p{margin:0;color:#444}
+
+    /* SERVICES layout */
     .services h2{text-align:center;margin-bottom:40px}
     .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
-    .service-box{background:white;padding:22px;border-radius:12px;border:1px solid #f3d7e8;text-align:center;transition:transform .25s,box-shadow .25s}
-    .service-box i{font-size:2.2rem;color:#d36ba6;margin-bottom:10px}
-    .service-box:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-    .service-box .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,#d36ba6,#b8588e);color:#fff;border:none;cursor:pointer}
+    .service-box{text-align:center;padding:22px;border-radius:12px;border:1px solid var(--card-border);background:var(--card-bg)}
+    .service-box i{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
+    .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,var(--accent-2),#b8588e);color:#fff;border:none;cursor:pointer}
 
-    /* ABOUT */
-    .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap;flex-direction:row}
-    .about img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto}
-    .about-text{flex:1;min-width:220px}
+    /* ABOUT section styles (uses .card to match services) */
+    .about{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .about-card{display:flex;gap:18px;align-items:center}
+    .about-card img{width:220px;border-radius:12px;object-fit:cover;height:auto}
+    .about-card .about-text{flex:1}
 
     /* TESTIMONIALS */
     .testimonials{text-align:center}
-    .testimonial-slider{max-width:700px;margin:auto;background:white;padding:30px;border-radius:12px;border:1px solid #f3d7e8}
+    .testimonial-slider{max-width:700px;margin:auto;background:var(--card-bg);padding:30px;border-radius:12px;border:1px solid var(--card-border)}
     .testimonial{display:none}
     .testimonial.active{display:block;animation:fadeIn .6s}
 
     /* CONTACT */
-    form{max-width:600px;margin:30px auto 0;padding:30px;background:white;border-radius:12px;border:1px solid #f3d7e8}
+    form{max-width:600px;margin:30px auto 0;padding:30px;background:var(--card-bg);border-radius:12px;border:1px solid var(--card-border)}
     form input, form textarea{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #ccc;font-family:inherit}
-    form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
+    form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,var(--accent-2),#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
     .form-message{display:none;margin-top:15px;padding:12px 20px;border-radius:8px;font-weight:500;text-align:center;font-size:.95rem;opacity:0;transition:opacity .5s}
-    .form-message.success{background:linear-gradient(90deg,#d36ba6,#b8588e);color:white}
+    .form-message.success{background:linear-gradient(90deg,var(--accent-2),#b8588e);color:white}
     .form-message.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
 
     footer{background:#ffeaf3;padding:25px;text-align:center;margin-top:30px}
@@ -108,13 +132,11 @@
         transition:transform .22s ease,opacity .22s ease;
         box-shadow:0 10px 30px rgba(0,0,0,.08);
       }
-      .nav-links.open{
-        transform:none;
-        opacity:1;
-        pointer-events:auto;
-      }
+      .nav-links.open{transform:none;opacity:1;pointer-events:auto}
       nav[role="navigation"] .nav-links a{padding:10px 6px;display:block}
       .about{flex-direction:column;align-items:flex-start}
+      .about-card img{width:100%;max-width:360px}
+      .card .card-body img{max-width:45%}
     }
 
     @media (min-width:769px) {
@@ -126,14 +148,14 @@
     .modal[aria-hidden="false"]{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
     .modal-panel{position:relative;width:95%;max-width:1200px;max-height:92vh;margin:auto;z-index:2;outline:none;display:flex;flex-direction:column;border-radius:12px}
-    .modal-content{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+    .modal-content{background:var(--card-bg);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
     .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
     .modal-main{display:flex;align-items:center;gap:8px;position:relative}
 
     .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:320px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6;position:relative}
     .modal-image-wrap img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;object-fit:contain;user-select:none}
 
-    .modal-spinner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--spinner-size);height:var(--spinner-size);border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:#d36ba6;border-right-color:#b8588e;animation:spin 0.9s linear infinite;display:none;z-index:4}
+    .modal-spinner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:var(--accent-2);border-right-color:#b8588e;animation:spin 0.9s linear infinite;display:none;z-index:4}
     @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
     .modal-spinner.visible{display:block}
 
@@ -143,7 +165,7 @@
     .modal-thumbs{display:flex;gap:8px;align-items:center}
     .modal-thumbs .thumb{border:2px solid transparent;border-radius:6px;padding:3px;background:transparent;cursor:pointer}
     .modal-thumbs .thumb img{width:84px;height:60px;object-fit:cover;border-radius:4px;display:block}
-    .modal-thumbs .thumb[aria-selected="true"]{border-color:#d36ba6;box-shadow:0 8px 20px rgba(211,107,166,.12)}
+    .modal-thumbs .thumb[aria-selected="true"]{border-color:var(--accent-2);box-shadow:0 8px 20px rgba(211,107,166,.12)}
     .modal-caption{margin-top:6px;text-align:center;color:#444;font-size:.95rem}
 
     @media (max-width:800px){
@@ -162,7 +184,6 @@
 
     <!-- hamburger is a real button (JS will toggle .open on .nav-links) -->
     <button class="hamburger" id="hamburger-btn" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <!-- Inline accessible SVG hamburger icon (three bars) -->
       <svg viewBox="0 0 24 16" aria-hidden="true" focusable="false">
         <rect class="bar" x="0" y="1" width="24" height="2" rx="1"></rect>
         <rect class="bar" x="0" y="7" width="24" height="2" rx="1"></rect>
@@ -193,43 +214,53 @@
     <section class="services" id="services" aria-labelledby="services-heading">
       <h2 id="services-heading">Our Services</h2>
       <div class="service-list">
-        <div class="service-box">
-          <i class="fa-solid fa-ring" aria-hidden="true"></i>
-          <h3>Bridal Makeup</h3>
-          <p>Elegant, long-lasting bridal looks tailored to your personality.</p>
-          <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">View Bridal Gallery</button>
+        <div class="service-box card" aria-labelledby="bridal-title">
+          <div style="text-align:center">
+            <i class="fa-solid fa-ring" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i>
+          </div>
+          <h3 id="bridal-title" style="text-align:center;margin-top:8px">Bridal Makeup</h3>
+          <p style="text-align:center">Elegant, long-lasting bridal looks tailored to your personality.</p>
+          <div style="text-align:center">
+            <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">View Bridal Gallery</button>
+          </div>
         </div>
 
-        <div class="service-box">
-          <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-          <h3>Party Makeup</h3>
-          <p>Perfect glam for celebrations, parties, and events.</p>
+        <div class="service-box card">
+          <div style="text-align:center"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
+          <h3 style="text-align:center;margin-top:8px">Party Makeup</h3>
+          <p style="text-align:center">Perfect glam for celebrations, parties, and events.</p>
         </div>
-        <div class="service-box">
-          <i class="fa-solid fa-scissors" aria-hidden="true"></i>
-          <h3>Hairstyling</h3>
-          <p>Customized hairstyles from curls to buns, modern to classic.</p>
+
+        <div class="service-box card">
+          <div style="text-align:center"><i class="fa-solid fa-scissors" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
+          <h3 style="text-align:center;margin-top:8px">Hairstyling</h3>
+          <p style="text-align:center">Customized hairstyles from curls to buns, modern to classic.</p>
         </div>
-        <div class="service-box">
-          <i class="fa-solid fa-comments" aria-hidden="true"></i>
-          <h3>Makeup Consultation</h3>
-          <p>Personalized product and style guidance.</p>
+
+        <div class="service-box card">
+          <div style="text-align:center"><i class="fa-solid fa-comments" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
+          <h3 style="text-align:center;margin-top:8px">Makeup Consultation</h3>
+          <p style="text-align:center">Personalized product and style guidance.</p>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT (styled as a matching card) -->
     <section class="about" id="about" aria-labelledby="about-heading">
-      <img id="about-img"
-           src="images/neha_jorewar_about_me.jpeg"
-           srcset="images/neha_jorewar_about_me-480.jpeg 480w, images/neha_jorewar_about_me-800.jpeg 800w, images/neha_jorewar_about_me.jpeg 1200w"
-           sizes="(max-width:600px) 100vw, 360px"
-           alt="Neha Jorewar smiling, makeup artist"
-           loading="lazy">
-      <div class="about-text">
-        <h2 id="about-heading">About Me</h2>
-        <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
-        <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
+      <div class="card about-card" role="region" aria-labelledby="about-heading">
+        <img id="about-img"
+             src="images/neha_jorewar_about_me.jpeg"
+             srcset="images/neha_jorewar_about_me-480.jpeg 480w, images/neha_jorewar_about_me-800.jpeg 800w, images/neha_jorewar_about_me.jpeg 1200w"
+             sizes="(max-width:600px) 100vw, 360px"
+             alt="Neha Jorewar smiling, makeup artist"
+             loading="lazy">
+        <div class="about-text card-body" style="flex-direction:column;gap:10px">
+          <div>
+            <h2 id="about-heading">About Me</h2>
+            <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
+            <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -290,7 +321,6 @@
 
           <div class="modal-image-wrap" id="modal-image-wrap" aria-live="polite">
             <div class="modal-spinner" id="modal-spinner" aria-hidden="true"></div>
-            <!-- fitted image -->
             <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
             <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
           </div>
@@ -308,6 +338,7 @@
 <script>
 /* ---------- Basic helpers & UX ---------- */
 
+/* Testimonial slider */
 (function testimonialSlider(){
   const testimonials = document.querySelectorAll('.testimonial');
   if (!testimonials || testimonials.length === 0) return;
@@ -315,6 +346,7 @@
   setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
 })();
 
+/* Contact form AJAX with simple messages */
 (function contactFormAjax(){
   const form = document.getElementById('contact-form');
   const successMessage = document.getElementById('form-success');
@@ -334,6 +366,7 @@
   }
 })();
 
+/* Whatsapp links */
 (function whatsappLinks(){
   const phone = "917020588760";
   const ids = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
@@ -361,50 +394,27 @@
   tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
 })();
 
-/* ---------- Hamburger (JS-driven) ----------
-   - toggles .open on .nav-links
-   - updates aria-expanded and data-open
-   - closes on link click or outside click (mobile only)
-*/
+/* Hamburger controller (JS-driven) */
 (function hamburgerController(){
   const btn = document.getElementById('hamburger-btn');
   const nav = document.getElementById('primary-navigation');
   const links = document.querySelectorAll('.nav-link');
 
   if (!btn || !nav) return;
-
   function isOpen(){ return nav.classList.contains('open'); }
   function openNav(){
-    nav.classList.add('open');
-    btn.setAttribute('aria-expanded','true');
-    nav.setAttribute('data-open','true');
+    nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); nav.setAttribute('data-open','true');
   }
   function closeNav(){
-    nav.classList.remove('open');
-    btn.setAttribute('aria-expanded','false');
-    nav.setAttribute('data-open','false');
+    nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); nav.setAttribute('data-open','false');
   }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleNav();
-  });
+  btn.addEventListener('click', (e) => { e.stopPropagation(); toggleNav(); });
+  btn.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggleNav(); } });
 
-  // keyboard support
-  btn.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter' || ev.key === ' ') {
-      ev.preventDefault();
-      toggleNav();
-    }
-  });
+  links.forEach(a => a.addEventListener('click', () => { if (window.matchMedia('(max-width:768px)').matches) closeNav(); }));
 
-  // close when a link is clicked (mobile)
-  links.forEach(a => a.addEventListener('click', () => {
-    if (window.matchMedia('(max-width:768px)').matches) closeNav();
-  }));
-
-  // close when clicking outside (mobile)
   document.addEventListener('click', (e) => {
     if (!window.matchMedia('(max-width:768px)').matches) return;
     if (!isOpen()) return;
@@ -413,20 +423,14 @@
     closeNav();
   });
 
-  // keep state consistent on resize (if moved to desktop, ensure nav visible)
   window.addEventListener('resize', () => {
     if (!window.matchMedia('(max-width:768px)').matches) {
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-      nav.setAttribute('data-open','false');
+      nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); nav.setAttribute('data-open','false');
     }
   });
 })();
 
-/* ---------- Bridal gallery modal (no zoom) ----------
-   - uses images/Bridal/bridal_01.jpeg ... bridal_12.jpeg
-   - thumbnails + keyboard + autoplay + spinner
-*/
+/* Bridal gallery modal (no zoom) */
 (function bridalModal(){
   const openBtns = document.querySelectorAll('.open-bridal-gallery');
   const modal = document.getElementById('bridal-modal');
@@ -462,7 +466,7 @@
   async function discover() {
     const found = [];
     for (const url of candidates) {
-      // sequential check to reduce parallel requests
+      // sequential checks reduce parallel requests
       // eslint-disable-next-line no-await-in-loop
       const res = await testImage(url);
       if (res.ok) found.push(url);
@@ -509,15 +513,8 @@
     current = i;
     showSpinner(true);
 
-    mainImg.onload = () => {
-      showSpinner(false);
-      mainImg.style.width = '';
-      mainImg.style.height = '';
-    };
-    mainImg.onerror = () => {
-      showSpinner(false);
-      console.warn('[bridal] failed to load', images[i]);
-    };
+    mainImg.onload = () => { showSpinner(false); mainImg.style.width = ''; mainImg.style.height = ''; };
+    mainImg.onerror = () => { showSpinner(false); console.warn('[bridal] failed to load', images[i]); };
 
     mainImg.src = images[i];
     mainImg.alt = `Bridal image ${i+1}`;
