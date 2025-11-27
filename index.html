@@ -96,7 +96,7 @@
         pointer-events:none;
         transition:transform .22s ease,opacity .22s ease;
       }
-      /* FIXED: match the DOM order: checkbox ~ .nav-links */
+      /* checkbox controls visibility of nav-links */
       #menu-toggle:checked ~ .nav-links {
         opacity:1;
         transform:none;
@@ -111,7 +111,7 @@
       .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important}
     }
 
-    /* ----------------- Modal & zoom ----------------- */
+    /* ----------------- Modal (no zoom-on-click) ----------------- */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
     .modal[aria-hidden="false"]{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
@@ -120,10 +120,10 @@
     .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
     .modal-main{display:flex;align-items:center;gap:8px;position:relative}
 
+    /* visible area that will contain the fitted image; overflow hidden (no zoom) */
     .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:320px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6;position:relative}
-    .img-scale{width:100%;height:100%;display:block;overflow:visible;position:relative;display:flex;align-items:center;justify-content:center}
-    .img-scale img{display:block;width:100%;height:100%;object-fit:contain;user-select:none;cursor:zoom-in;transition:transform .12s ease}
-    .modal-image-wrap.zoomed{overflow:auto}
+    .modal-image-wrap img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;object-fit:contain;user-select:none}
+
     .modal-spinner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--spinner-size);height:var(--spinner-size);border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:#d36ba6;border-right-color:#b8588e;animation:spin 0.9s linear infinite;display:none;z-index:4}
     @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
     .modal-spinner.visible{display:block}
@@ -151,14 +151,15 @@
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="brand">Neha Jorewar Studio</div>
 
-    <!-- hidden checkbox controls menu state -->
+    <!-- hidden checkbox controls menu state (must appear BEFORE .nav-links and label can control it) -->
     <input id="menu-toggle" type="checkbox" aria-hidden="false" />
+
     <!-- label toggles the checkbox -->
     <label for="menu-toggle" class="hamburger" tabindex="0" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </label>
 
-    <!-- nav-links is a sibling that follows the checkbox (so CSS sibling selector works) -->
+    <!-- nav-links is a sibling that follows the checkbox (CSS sibling selector uses ~) -->
     <div class="nav-links" id="primary-navigation" role="menu" data-open="false">
       <a href="#services" class="nav-link" role="menuitem">Services</a>
       <a href="#about" class="nav-link" role="menuitem">About</a>
@@ -267,7 +268,7 @@
 
   <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 
-  <!-- BRIDAL GALLERY MODAL -->
+  <!-- BRIDAL GALLERY MODAL (no zoom-on-click) -->
   <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
     <div class="modal-backdrop" data-close="true"></div>
     <div class="modal-panel" role="document" tabindex="-1">
@@ -279,9 +280,8 @@
 
           <div class="modal-image-wrap" id="modal-image-wrap" aria-live="polite">
             <div class="modal-spinner" id="modal-spinner" aria-hidden="true"></div>
-            <div class="img-scale" id="img-scale">
-              <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
-            </div>
+            <!-- now simply show fitted image (no zoom) -->
+            <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
             <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
           </div>
 
@@ -296,8 +296,7 @@
   </div>
 
 <script>
-/* ---------- Basic helpers & UX ---------- */
-
+/* ---------- Testimonials, contact, whatsapp links ---------- */
 (function testimonialSlider(){
   const testimonials = document.querySelectorAll('.testimonial');
   if (!testimonials || testimonials.length === 0) return;
@@ -324,7 +323,6 @@
   }
 })();
 
-/* Whatsapp links */
 (function whatsappLinks(){
   const phone = "917020588760";
   const ids = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
@@ -337,7 +335,7 @@
   });
 })();
 
-/* Ensure about image exists (jpeg) */
+/* Ensure about image fallback */
 (function ensureAboutImage() {
   const imgEl = document.getElementById('about-img');
   if (!imgEl) return;
@@ -352,59 +350,68 @@
   tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
 })();
 
-/* ---------- Mobile menu accessibility & behavior fix ---------- */
-(function mobileMenuAccessibility(){
+/* ---------- Hamburger: robust open/close + aria updates ---------- */
+/* Implementation details:
+   - CSS uses #menu-toggle:checked ~ .nav-links to show/hide menu.
+   - JS keeps aria-expanded and data-open in sync and closes menu on link click or outside click.
+*/
+(function hamburgerFix(){
   const checkbox = document.getElementById('menu-toggle');
-  const hamburger = document.querySelector('label.hamburger');
+  const label = document.querySelector('label.hamburger');
   const nav = document.getElementById('primary-navigation');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const links = document.querySelectorAll('.nav-link');
 
-  if (!checkbox || !hamburger || !nav) return;
+  if (!checkbox || !label || !nav) return;
 
-  // update aria-expanded & data-open when checkbox state changes
-  function updateMenuState() {
+  function updateState() {
     const open = !!checkbox.checked;
-    hamburger.setAttribute('aria-expanded', String(open));
+    label.setAttribute('aria-expanded', String(open));
     nav.setAttribute('data-open', open ? 'true' : 'false');
   }
 
-  checkbox.addEventListener('change', updateMenuState);
+  // User clicking the label toggles the checkbox automatically via for="" attribute.
+  // Listen for change to update aria/data attributes.
+  checkbox.addEventListener('change', updateState);
 
-  // allow keyboard toggle on label
-  hamburger.addEventListener('keydown', (ev) => {
+  // Support keyboard activation on label
+  label.addEventListener('keydown', (ev) => {
     if (ev.key === 'Enter' || ev.key === ' ') {
       ev.preventDefault();
       checkbox.checked = !checkbox.checked;
-      updateMenuState();
+      updateState();
     }
   });
 
-  // close when a nav link is clicked (mobile)
-  navLinks.forEach(a => {
+  // Close menu when a nav link is clicked (mobile)
+  links.forEach(a => {
     a.addEventListener('click', () => {
-      if (checkbox.checked) {
+      if (window.matchMedia('(max-width:768px)').matches && checkbox.checked) {
         checkbox.checked = false;
-        updateMenuState();
+        updateState();
       }
     });
   });
 
-  // close when clicking outside nav area (on small screens)
+  // Close if user taps outside while open (mobile)
   document.addEventListener('click', (e) => {
-    const isSmall = window.matchMedia('(max-width:768px)').matches;
-    if (!isSmall) return;
-    if (checkbox.checked && !nav.contains(e.target) && !e.target.closest('label.hamburger')) {
-      checkbox.checked = false;
-      updateMenuState();
-    }
+    if (!window.matchMedia('(max-width:768px)').matches) return;
+    if (!checkbox.checked) return;
+    const target = e.target;
+    if (nav.contains(target) || target.closest('label.hamburger')) return;
+    // clicked outside
+    checkbox.checked = false;
+    updateState();
   });
 
-  // ensure state is correct on load/resize
-  window.addEventListener('resize', updateMenuState);
-  updateMenuState();
+  // make sure initial state is synced
+  updateState();
 })();
 
-/* ---------- Bridal gallery modal with point-centered zoom (keeps image ratio) ---------- */
+/* ---------- Bridal gallery modal (zoom removed) ----------
+   - discovers images images/Bridal/bridal_01.jpeg ... bridal_12.jpeg
+   - shows fitted images (no zoom-on-click)
+   - thumbnails + keyboard + autoplay + spinner preserved
+*/
 (function bridalModal(){
   const openBtns = document.querySelectorAll('.open-bridal-gallery');
   const modal = document.getElementById('bridal-modal');
@@ -413,8 +420,6 @@
   const modalPanel = modal.querySelector('.modal-panel');
   const mainImg = document.getElementById('bridal-modal-main');
   const spinner = document.getElementById('modal-spinner');
-  const modalWrap = document.getElementById('modal-image-wrap'); // visible viewport
-  const imgScale = document.getElementById('img-scale'); // container that we resize for zoom
   const caption = document.getElementById('bridal-caption');
   const thumbsContainer = document.getElementById('bridal-thumbs');
   const prevBtn = modal.querySelector('[data-action="prev"]');
@@ -442,6 +447,7 @@
   async function discover() {
     const found = [];
     for (const url of candidates) {
+      // check sequentially (reduces parallel requests)
       // eslint-disable-next-line no-await-in-loop
       const res = await testImage(url);
       if (res.ok) found.push(url);
@@ -482,45 +488,25 @@
     showIndex(0);
   }
 
-  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
-
-  async function showIndex(i){
+  function showIndex(i){
     if (!images || images.length === 0) return;
     i = (i + images.length) % images.length;
     current = i;
-
     showSpinner(true);
 
-    // reset any inline sizing/zoom
-    resetZoomImmediate();
+    mainImg.onload = () => {
+      showSpinner(false);
+      // fitted display — no zooming
+      mainImg.style.width = '';
+      mainImg.style.height = '';
+    };
+    mainImg.onerror = () => {
+      showSpinner(false);
+      console.warn('[bridal] failed to load', images[i]);
+    };
 
-    // set image src — wait for load to compute sizes
     mainImg.src = images[i];
     mainImg.alt = `Bridal image ${i+1}`;
-
-    // wait for the image to load to measure natural dimensions
-    await new Promise((resolve) => {
-      if (mainImg.complete && mainImg.naturalWidth) return resolve();
-      mainImg.onload = () => resolve();
-      mainImg.onerror = () => resolve();
-    });
-    showSpinner(false);
-
-    // compute fit size inside modalWrap
-    const wrapRect = modalWrap.getBoundingClientRect();
-    const natW = mainImg.naturalWidth;
-    const natH = mainImg.naturalHeight;
-    const fitScale = Math.min(wrapRect.width / natW, wrapRect.height / natH, 1);
-    const fitW = Math.round(natW * fitScale);
-    const fitH = Math.round(natH * fitScale);
-
-    // set imgScale to fit size
-    imgScale.style.width = fitW + 'px';
-    imgScale.style.height = fitH + 'px';
-    mainImg.style.width = '100%';
-    mainImg.style.height = '100%';
-    mainImg.style.objectFit = 'contain';
-
     caption.textContent = `Image ${i+1} of ${images.length}`;
     const thumbs = thumbsContainer.querySelectorAll('.thumb');
     thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
@@ -536,7 +522,7 @@
   function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
 
   function openModal(){ modal.setAttribute('aria-hidden','false'); modalPanel && modalPanel.focus(); startAutoplay(); document.body.style.overflow = 'hidden'; }
-  function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; resetZoomImmediate(); openBtns.length && openBtns[0].focus(); }
+  function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
 
   prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
   nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
@@ -555,68 +541,6 @@
   modal.addEventListener('focusin', stopAutoplay);
   modal.addEventListener('focusout', startAutoplay);
 
-  function resetZoomImmediate(){
-    modalWrap.classList.remove('zoomed');
-    imgScale.style.width = '';
-    imgScale.style.height = '';
-    mainImg.style.width = '';
-    mainImg.style.height = '';
-    mainImg.style.objectFit = '';
-    modalWrap.scrollLeft = 0;
-    modalWrap.scrollTop = 0;
-  }
-
-  modalWrap.addEventListener('click', (e) => {
-    if (!mainImg || !mainImg.complete || !mainImg.naturalWidth) return;
-
-    if (modalWrap.classList.contains('zoomed')) {
-      resetZoomImmediate();
-      return;
-    }
-
-    const imgRect = mainImg.getBoundingClientRect();
-    const clickX = clamp(e.clientX, imgRect.left, imgRect.right);
-    const clickY = clamp(e.clientY, imgRect.top, imgRect.bottom);
-    const relX = (clickX - imgRect.left) / imgRect.width;
-    const relY = (clickY - imgRect.top) / imgRect.height;
-
-    const natW = mainImg.naturalWidth;
-    const natH = mainImg.naturalHeight;
-    const scaleBoxRect = imgScale.getBoundingClientRect();
-    const fitW = scaleBoxRect.width;
-    const fitH = scaleBoxRect.height;
-
-    const maxScale = Math.min(natW / fitW, natH / fitH);
-    let scale = Math.max(1.6, maxScale);
-    // guard:
-    if (!isFinite(scale) || scale <= 1) scale = 1.6;
-
-    const newW = Math.round(fitW * scale);
-    const newH = Math.round(fitH * scale);
-
-    imgScale.style.width = newW + 'px';
-    imgScale.style.height = newH + 'px';
-    mainImg.style.width = '100%';
-    mainImg.style.height = '100%';
-    mainImg.style.objectFit = 'contain';
-    modalWrap.classList.add('zoomed');
-
-    const clickXInNew = Math.round(relX * newW);
-    const clickYInNew = Math.round(relY * newH);
-
-    const targetScrollLeft = clamp(clickXInNew - Math.round(modalWrap.clientWidth / 2), 0, Math.max(0, newW - modalWrap.clientWidth));
-    const targetScrollTop  = clamp(clickYInNew - Math.round(modalWrap.clientHeight / 2), 0, Math.max(0, newH - modalWrap.clientHeight));
-
-    requestAnimationFrame(() => {
-      modalWrap.scrollTo({ left: targetScrollLeft, top: targetScrollTop, behavior: 'smooth' });
-    });
-  });
-
-  mainImg.addEventListener('dblclick', () => { if (mainImg.src) window.open(mainImg.src, '_blank'); });
-
-  prevBtn && prevBtn.addEventListener('click', resetZoomImmediate);
-  nextBtn && nextBtn.addEventListener('click', resetZoomImmediate);
-
   openBtns.forEach(btn=>{
     btn.addEventListener('click', async ()=>{
       if (images.length === 0){
@@ -631,6 +555,7 @@
     });
   });
 
+  // pre-discover quietly
   setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
 
 })(); // end bridalModal
