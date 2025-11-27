@@ -38,7 +38,7 @@
     .nav-links a{font-weight:500;color:var(--accent)}
     .nav-links a:hover,.nav-links a:focus{color:var(--accent-2);outline:none}
 
-    /* hamburger button (JS-driven) */
+    /* hamburger button */
     .hamburger{
       display:none;
       align-items:center;
@@ -75,7 +75,6 @@
       transition:transform .25s,box-shadow .25s;
     }
     .card:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-    .card .icon{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
     .card h3{margin:0 0 6px 0}
     .card p{margin:0;color:#444}
 
@@ -84,7 +83,7 @@
     .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
     .service-box{text-align:center;padding:22px;border-radius:12px;border:1px solid var(--card-border);background:var(--card-bg)}
     .service-box i{font-size:2.2rem;color:var(--accent-2);margin-bottom:10px}
-    .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,var(--accent-2),#b8588e);color:#fff;border:none;cursor:pointer}
+    .open-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,var(--accent-2),#b8588e);color:#fff;border:none;cursor:pointer}
 
     /* ABOUT section: image and separate card (text-only) */
     .about{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
@@ -179,7 +178,7 @@
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="brand">Neha Jorewar Studio</div>
 
-    <!-- hamburger is a real button (JS will toggle .open on .nav-links) -->
+    <!-- hamburger -->
     <button class="hamburger" id="hamburger-btn" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
       <svg viewBox="0 0 24 16" aria-hidden="true" focusable="false">
         <rect class="bar" x="0" y="1" width="24" height="2" rx="1"></rect>
@@ -211,6 +210,7 @@
     <section class="services" id="services" aria-labelledby="services-heading">
       <h2 id="services-heading">Our Services</h2>
       <div class="service-list">
+        <!-- Bridal -->
         <div class="service-box card" aria-labelledby="bridal-title">
           <div style="text-align:center">
             <i class="fa-solid fa-ring" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i>
@@ -218,22 +218,35 @@
           <h3 id="bridal-title" style="text-align:center;margin-top:8px">Bridal Makeup</h3>
           <p style="text-align:center">Elegant, long-lasting bridal looks tailored to your personality.</p>
           <div style="text-align:center">
-            <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">View Bridal Gallery</button>
+            <button class="open-gallery" data-gallery="bridal" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">View Bridal Gallery</button>
           </div>
         </div>
 
-        <div class="service-box card">
-          <div style="text-align:center"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
-          <h3 style="text-align:center;margin-top:8px">Party Makeup</h3>
+        <!-- Party -->
+        <div class="service-box card" aria-labelledby="party-title">
+          <div style="text-align:center">
+            <i class="fa-solid fa-martini-glass" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i>
+          </div>
+          <h3 id="party-title" style="text-align:center;margin-top:8px">Party Makeup</h3>
           <p style="text-align:center">Perfect glam for celebrations, parties, and events.</p>
+          <div style="text-align:center">
+            <button class="open-gallery" data-gallery="party" type="button" aria-haspopup="dialog" aria-controls="party-modal">View Party Gallery</button>
+          </div>
         </div>
 
-        <div class="service-box card">
-          <div style="text-align:center"><i class="fa-solid fa-scissors" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
-          <h3 style="text-align:center;margin-top:8px">Hairstyling</h3>
+        <!-- Hairstyles -->
+        <div class="service-box card" aria-labelledby="hair-title">
+          <div style="text-align:center">
+            <i class="fa-solid fa-scissors" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i>
+          </div>
+          <h3 id="hair-title" style="text-align:center;margin-top:8px">Hairstyling</h3>
           <p style="text-align:center">Customized hairstyles from curls to buns, modern to classic.</p>
+          <div style="text-align:center">
+            <button class="open-gallery" data-gallery="hairstyles" type="button" aria-haspopup="dialog" aria-controls="hairstyles-modal">View Hairstyles Gallery</button>
+          </div>
         </div>
 
+        <!-- Consultation -->
         <div class="service-box card">
           <div style="text-align:center"><i class="fa-solid fa-comments" aria-hidden="true" style="font-size:2.2rem;color:var(--accent-2)"></i></div>
           <h3 style="text-align:center;margin-top:8px">Makeup Consultation</h3>
@@ -242,9 +255,8 @@
       </div>
     </section>
 
-    <!-- ABOUT (image and text are separate; text sits inside a card to match services) -->
+    <!-- ABOUT -->
     <section class="about" id="about" aria-labelledby="about-heading">
-      <!-- about image sits alone -->
       <div class="about-img" aria-hidden="false">
         <img id="about-img"
              src="images/neha_jorewar_about_me.jpeg"
@@ -254,7 +266,6 @@
              loading="lazy">
       </div>
 
-      <!-- separate card for the About text (not enclosing the image) -->
       <aside class="card about-card" role="region" aria-labelledby="about-heading">
         <h2 id="about-heading">About Me</h2>
         <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
@@ -307,7 +318,9 @@
 
   <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 
-  <!-- BRIDAL GALLERY MODAL (no zoom) -->
+  <!-- ---------- MODALS: Bridal, Party, Hairstyles (same structure) ---------- -->
+
+  <!-- Bridal modal -->
   <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
     <div class="modal-backdrop" data-close="true"></div>
     <div class="modal-panel" role="document" tabindex="-1">
@@ -316,18 +329,61 @@
       <div class="modal-content">
         <div class="modal-main">
           <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
-
-          <div class="modal-image-wrap" id="modal-image-wrap" aria-live="polite">
-            <div class="modal-spinner" id="modal-spinner" aria-hidden="true"></div>
-            <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
+          <div class="modal-image-wrap" id="bridal-modal-wrap" aria-live="polite">
+            <div class="modal-spinner" id="bridal-spinner" aria-hidden="true"></div>
+            <img id="bridal-main" src="" alt="Bridal image" loading="lazy">
             <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
           </div>
-
           <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
         </div>
-
         <div class="modal-thumbs-wrap">
           <div id="bridal-thumbs" class="modal-thumbs" role="tablist" aria-label="Bridal thumbnails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Party modal -->
+  <div id="party-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Party gallery">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" role="document" tabindex="-1">
+      <button class="modal-close" aria-label="Close gallery" data-action="close">✕</button>
+
+      <div class="modal-content">
+        <div class="modal-main">
+          <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
+          <div class="modal-image-wrap" id="party-modal-wrap" aria-live="polite">
+            <div class="modal-spinner" id="party-spinner" aria-hidden="true"></div>
+            <img id="party-main" src="" alt="Party makeup image" loading="lazy">
+            <div id="party-caption" class="modal-caption" aria-live="polite"></div>
+          </div>
+          <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
+        </div>
+        <div class="modal-thumbs-wrap">
+          <div id="party-thumbs" class="modal-thumbs" role="tablist" aria-label="Party thumbnails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hairstyles modal -->
+  <div id="hairstyles-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Hairstyles gallery">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" role="document" tabindex="-1">
+      <button class="modal-close" aria-label="Close gallery" data-action="close">✕</button>
+
+      <div class="modal-content">
+        <div class="modal-main">
+          <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
+          <div class="modal-image-wrap" id="hairstyles-modal-wrap" aria-live="polite">
+            <div class="modal-spinner" id="hairstyles-spinner" aria-hidden="true"></div>
+            <img id="hairstyles-main" src="" alt="Hairstyle image" loading="lazy">
+            <div id="hairstyles-caption" class="modal-caption" aria-live="polite"></div>
+          </div>
+          <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
+        </div>
+        <div class="modal-thumbs-wrap">
+          <div id="hairstyles-thumbs" class="modal-thumbs" role="tablist" aria-label="Hairstyles thumbnails"></div>
         </div>
       </div>
     </div>
@@ -344,7 +400,7 @@
   setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
 })();
 
-/* Contact form AJAX with simple messages */
+/* Contact form AJAX */
 (function contactFormAjax(){
   const form = document.getElementById('contact-form');
   const successMessage = document.getElementById('form-success');
@@ -400,12 +456,8 @@
 
   if (!btn || !nav) return;
   function isOpen(){ return nav.classList.contains('open'); }
-  function openNav(){
-    nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); nav.setAttribute('data-open','true');
-  }
-  function closeNav(){
-    nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); nav.setAttribute('data-open','false');
-  }
+  function openNav(){ nav.classList.add('open'); btn.setAttribute('aria-expanded','true'); nav.setAttribute('data-open','true'); }
+  function closeNav(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); nav.setAttribute('data-open','false'); }
   function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
   btn.addEventListener('click', (e) => { e.stopPropagation(); toggleNav(); });
@@ -428,146 +480,210 @@
   });
 })();
 
-/* Bridal gallery modal (no zoom) */
-(function bridalModal(){
-  const openBtns = document.querySelectorAll('.open-bridal-gallery');
-  const modal = document.getElementById('bridal-modal');
-  if (!modal) { console.warn('[bridal] modal not found'); return; }
-  const backdrop = modal.querySelector('.modal-backdrop');
-  const modalPanel = modal.querySelector('.modal-panel');
-  const mainImg = document.getElementById('bridal-modal-main');
-  const spinner = document.getElementById('modal-spinner');
-  const caption = document.getElementById('bridal-caption');
-  const thumbsContainer = document.getElementById('bridal-thumbs');
-  const prevBtn = modal.querySelector('[data-action="prev"]');
-  const nextBtn = modal.querySelector('[data-action="next"]');
-  const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
+/* ---------- Generic gallery factory ----------
+   Create modal galleries with:
+     folder - folder path (e.g. 'images/Bridal')
+     prefix - filename prefix (e.g. 'bridal_')
+     maxNum - max images (numeric)
+     modalId - id of modal wrapper (string)
+     mainId - id of main img element
+     thumbsId - id of thumbs container
+     spinnerId - id of spinner element
+     captionId - id of caption element
+     openSelector - button selector or data attribute to open
+*/
+(function galleryFactory(){
 
-  const folder = 'images/Bridal';
-  const MAX = 12;
-  const pad = n => n.toString().padStart(2,'0');
-  const candidates = [];
-  for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
+  function makeGallery(opts) {
+    const {
+      folder, prefix, maxNum,
+      modalId, mainId, thumbsId, spinnerId, captionId, wrapId,
+      openAttrValue, autoplayMs = 3000
+    } = opts;
 
-  function testImage(url, timeout = 5000){
-    return new Promise((resolve) => {
-      const img = new Image();
-      let done = false;
-      const tidy = ok => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
-      img.onload = () => tidy(true);
-      img.onerror = () => tidy(false);
-      setTimeout(() => tidy(false), timeout);
-      img.src = url;
-    });
-  }
+    const openBtns = Array.from(document.querySelectorAll(`.open-gallery[data-gallery="${openAttrValue}"]`));
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    const backdrop = modal.querySelector('.modal-backdrop');
+    const modalPanel = modal.querySelector('.modal-panel');
+    const mainImg = document.getElementById(mainId);
+    const spinner = document.getElementById(spinnerId);
+    const wrap = document.getElementById(wrapId);
+    const caption = document.getElementById(captionId);
+    const thumbsContainer = document.getElementById(thumbsId);
+    const prevBtn = modal.querySelector('[data-action="prev"]');
+    const nextBtn = modal.querySelector('[data-action="next"]');
+    const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
 
-  async function discover() {
-    const found = [];
-    for (const url of candidates) {
-      // sequential checks reduce parallel requests
-      // eslint-disable-next-line no-await-in-loop
-      const res = await testImage(url);
-      if (res.ok) found.push(url);
+    const pad = n => n.toString().padStart(2,'0');
+    const candidates = [];
+    for (let i=1;i<=maxNum;i++){ candidates.push(`${folder}/${prefix}${pad(i)}.jpeg`); }
+
+    function testImage(url, timeout = 5000){
+      return new Promise((resolve) => {
+        const img = new Image();
+        let done = false;
+        const tidy = ok => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
+        img.onload = () => tidy(true);
+        img.onerror = () => tidy(false);
+        setTimeout(() => tidy(false), timeout);
+        img.src = url;
+      });
     }
-    return found;
-  }
 
-  let images = [];
-  let current = 0;
-  let autoplayTimer = null;
-  const AUTOPLAY_MS = 3000;
-
-  function showSpinner(show = true){
-    if (!spinner) return;
-    spinner.classList.toggle('visible', !!show);
-    spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
-  }
-
-  function buildGallery(list){
-    thumbsContainer.innerHTML = '';
-    if (!list || list.length === 0){
-      thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
-      mainImg.src = ''; caption.textContent = '';
-      return;
-    }
-    list.forEach((src,i)=>{
-      const btn = document.createElement('button');
-      btn.className = 'thumb';
-      btn.type = 'button';
-      btn.setAttribute('data-index', i);
-      btn.setAttribute('role','tab');
-      btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
-      btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
-      btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
-      btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
-      thumbsContainer.appendChild(btn);
-    });
-    showIndex(0);
-  }
-
-  function showIndex(i){
-    if (!images || images.length === 0) return;
-    i = (i + images.length) % images.length;
-    current = i;
-    showSpinner(true);
-
-    mainImg.onload = () => { showSpinner(false); mainImg.style.width = ''; mainImg.style.height = ''; };
-    mainImg.onerror = () => { showSpinner(false); console.warn('[bridal] failed to load', images[i]); };
-
-    mainImg.src = images[i];
-    mainImg.alt = `Bridal image ${i+1}`;
-    caption.textContent = `Image ${i+1} of ${images.length}`;
-    const thumbs = thumbsContainer.querySelectorAll('.thumb');
-    thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
-    const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
-    selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-  }
-
-  function next(){ showIndex(current + 1); }
-  function prev(){ showIndex(current - 1); }
-
-  function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
-  function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
-  function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-  function openModal(){ modal.setAttribute('aria-hidden','false'); modalPanel && modalPanel.focus(); startAutoplay(); document.body.style.overflow = 'hidden'; }
-  function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
-
-  prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
-  nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
-  closeBtn && closeBtn.addEventListener('click', closeModal);
-  if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
-
-  modal.addEventListener('keydown', (ev)=> {
-    if (modal.getAttribute('aria-hidden') === 'true') return;
-    if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
-    if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
-    if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
-  });
-
-  modal.addEventListener('mouseenter', stopAutoplay);
-  modal.addEventListener('mouseleave', startAutoplay);
-  modal.addEventListener('focusin', stopAutoplay);
-  modal.addEventListener('focusout', startAutoplay);
-
-  openBtns.forEach(btn=>{
-    btn.addEventListener('click', async ()=>{
-      if (images.length === 0){
-        modal.setAttribute('aria-hidden','false');
-        const found = await discover();
-        images = found;
-        buildGallery(images);
-      } else {
-        buildGallery(images);
+    async function discover() {
+      const found = [];
+      for (const url of candidates) {
+        // sequential checks
+        // eslint-disable-next-line no-await-in-loop
+        const res = await testImage(url);
+        if (res.ok) found.push(url);
       }
-      openModal();
+      return found;
+    }
+
+    let images = [];
+    let current = 0;
+    let autoplayTimer = null;
+
+    function showSpinner(show = true){
+      if (!spinner) return;
+      spinner.classList.toggle('visible', !!show);
+      spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+
+    function buildGallery(list){
+      thumbsContainer.innerHTML = '';
+      if (!list || list.length === 0){
+        thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No images found in ' + folder + ' (checked ' + prefix + '01…' + pad(maxNum) + ')</p>';
+        mainImg.src = ''; caption.textContent = '';
+        return;
+      }
+      list.forEach((src,i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'thumb';
+        btn.type = 'button';
+        btn.setAttribute('data-index', i);
+        btn.setAttribute('role','tab');
+        btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
+        btn.innerHTML = `<img src="${src}" alt="${prefix}${pad(i+1)} thumbnail" loading="lazy">`;
+        btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
+        btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
+        thumbsContainer.appendChild(btn);
+      });
+      showIndex(0);
+    }
+
+    function showIndex(i){
+      if (!images || images.length === 0) return;
+      i = (i + images.length) % images.length;
+      current = i;
+      showSpinner(true);
+
+      mainImg.onload = () => { showSpinner(false); mainImg.style.width = ''; mainImg.style.height = ''; };
+      mainImg.onerror = () => { showSpinner(false); console.warn('[gallery] failed to load', images[i]); };
+
+      mainImg.src = images[i];
+      mainImg.alt = `${prefix}${pad(i+1)}`;
+      caption.textContent = `Image ${i+1} of ${images.length}`;
+      const thumbs = thumbsContainer.querySelectorAll('.thumb');
+      thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+      const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
+      selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+
+    function next(){ showIndex(current + 1); }
+    function prev(){ showIndex(current - 1); }
+
+    function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, autoplayMs); }
+    function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
+    function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+    function openModal(){ modal.setAttribute('aria-hidden','false'); modalPanel && modalPanel.focus(); startAutoplay(); document.body.style.overflow = 'hidden'; }
+    function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
+
+    prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+    nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+    closeBtn && closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
+
+    modal.addEventListener('keydown', (ev)=> {
+      if (modal.getAttribute('aria-hidden') === 'true') return;
+      if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
+      if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
+      if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
     });
+
+    modal.addEventListener('mouseenter', stopAutoplay);
+    modal.addEventListener('mouseleave', startAutoplay);
+    modal.addEventListener('focusin', stopAutoplay);
+    modal.addEventListener('focusout', startAutoplay);
+
+    openBtns.forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        if (images.length === 0){
+          modal.setAttribute('aria-hidden','false');
+          const found = await discover();
+          images = found;
+          buildGallery(images);
+        } else {
+          buildGallery(images);
+        }
+        openModal();
+      });
+    });
+
+    // pre-discover quietly
+    setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
+
+  } // end makeGallery
+
+  // create Bridal gallery: bridal_01..bridal_12
+  makeGallery({
+    folder: 'images/Bridal',
+    prefix: 'bridal_',
+    maxNum: 12,
+    modalId: 'bridal-modal',
+    mainId: 'bridal-main',
+    thumbsId: 'bridal-thumbs',
+    spinnerId: 'bridal-spinner',
+    captionId: 'bridal-caption',
+    wrapId: 'bridal-modal-wrap',
+    openAttrValue: 'bridal',
+    autoplayMs: 3000
   });
 
-  // pre-discover quietly
-  setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
+  // create Party gallery: party_01..party_09
+  makeGallery({
+    folder: 'images/Party',
+    prefix: 'party_',
+    maxNum: 9,
+    modalId: 'party-modal',
+    mainId: 'party-main',
+    thumbsId: 'party-thumbs',
+    spinnerId: 'party-spinner',
+    captionId: 'party-caption',
+    wrapId: 'party-modal-wrap',
+    openAttrValue: 'party',
+    autoplayMs: 3000
+  });
 
-})(); // end bridalModal
+  // create Hairstyles gallery: hairstyle_01..hairstyle_07
+  makeGallery({
+    folder: 'images/Hairstyles',
+    prefix: 'hairstyle_',
+    maxNum: 7,
+    modalId: 'hairstyles-modal',
+    mainId: 'hairstyles-main',
+    thumbsId: 'hairstyles-thumbs',
+    spinnerId: 'hairstyles-spinner',
+    captionId: 'hairstyles-caption',
+    wrapId: 'hairstyles-modal-wrap',
+    openAttrValue: 'hairstyles',
+    autoplayMs: 3000
+  });
+
+})(); // end galleryFactory
 </script>
 </body>
 </html>
