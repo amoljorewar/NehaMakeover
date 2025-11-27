@@ -17,108 +17,100 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
-    :root { --nav-height:64px; --accent:#7a2253; --bg-weak:#fff7fa; }
-    * { box-sizing: border-box; }
-    html,body { height: 100%; }
-    body { margin: 0; font-family: "Inter", sans-serif; background: var(--bg-weak); color: #333; scroll-behavior: smooth; padding-top: var(--nav-height); }
-    h1,h2,h3 { font-family: "Playfair Display", serif; color: var(--accent); margin: 0 0 12px 0; }
-    a { color: inherit; text-decoration: none; }
-    section { padding: 80px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(30px); animation: fadeIn .9s forwards; }
-    @keyframes fadeIn { to { opacity: 1; transform: none; } }
+    :root { --nav-height:64px; --accent:#7a2253; --bg-weak:#fff7fa; --spinner-size:48px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:"Inter",sans-serif;background:var(--bg-weak);color:#333;scroll-behavior:smooth;padding-top:var(--nav-height)}
+    h1,h2,h3{font-family:"Playfair Display",serif;color:var(--accent);margin:0 0 12px 0}
+    a{color:inherit;text-decoration:none}
+    section{padding:80px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(30px);animation:fadeIn .9s forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
 
-    .skip-link { position: absolute; left: -9999px; top: auto; background: #fff; padding: 8px 12px; z-index: 10000; }
-    .skip-link:focus { left: 8px; top: 8px; border-radius: 6px; box-shadow: 0 4px 8px rgba(0,0,0,.12); }
+    .skip-link{position:absolute;left:-9999px;top:auto;background:#fff;padding:8px 12px;z-index:10000}
+    .skip-link:focus{left:8px;top:8px;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,.12)}
 
-    /* NAV */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); display:flex; align-items:center; justify-content:space-between; padding:10px 24px; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom:1px solid #f3cfe0; z-index:999; }
-    .brand { font-family:"Playfair Display",serif; font-size:1.1rem; font-weight:600; color: var(--accent); }
-    nav[role="navigation"] .nav-links { display:flex; gap:22px; align-items:center; }
-    .nav-links a { font-weight:500; color: var(--accent); }
-    .nav-links a:hover, .nav-links a:focus { color:#d36ba6; outline: none; }
+    .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #f3cfe0;z-index:999}
+    .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
+    nav[role="navigation"] .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{font-weight:500;color:var(--accent)}
+    .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
 
-    #menu-toggle { position:absolute; left:-9999px; }
-    .hamburger { display:none; cursor:pointer; gap:5px; flex-direction:column; }
-    .hamburger span { display:block; height:3px; width:26px; background:var(--accent); border-radius:2px; }
-    .hamburger:focus { outline: 2px solid #ffd6ea; outline-offset:4px; }
+    #menu-toggle{position:absolute;left:-9999px}
+    .hamburger{display:none;cursor:pointer;gap:5px;flex-direction:column}
+    .hamburger span{display:block;height:3px;width:26px;background:var(--accent);border-radius:2px}
+    .hamburger:focus{outline:2px solid #ffd6ea;outline-offset:4px}
 
-    /* HERO */
-    .hero { min-height: calc(90vh - var(--nav-height)); background: url("images/main_background.jpeg") center/cover no-repeat; position:relative; display:flex; justify-content:center; align-items:center; text-align:center; color:white; padding:40px 20px; }
-    .hero::after { content:""; position:absolute; inset:0; background: rgba(0,0,0,.45); }
-    .hero-content { position:relative; z-index:2; animation: fadeInHero 1.2s ease-out forwards; max-width:900px; }
-    @keyframes fadeInHero { 0% { opacity:0; transform: translateY(40px); } 100% { opacity:1; transform:none; } }
-    .hero h1 { font-size:2.6rem; margin-bottom:8px; color:white; }
-    .hero h2 { font-size:1.6rem; font-weight:400; color:white; margin-top:0; }
-    .hero p { margin:14px 0 22px; font-size:1.05rem; color:#f7eaf1; }
-    .hero button { padding:12px 32px; background: linear-gradient(45deg,#d36ba6,#b8588e); border:none; border-radius:25px; color:white; cursor:pointer; font-size:1rem; }
+    .hero{min-height:calc(90vh - var(--nav-height));background:url("images/main_background.jpeg") center/cover no-repeat;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .hero-content{position:relative;z-index:2;animation:fadeInHero 1.2s ease-out forwards;max-width:900px}
+    @keyframes fadeInHero{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:none}}
+    .hero h1{font-size:2.6rem;margin-bottom:8px;color:white}
+    .hero h2{font-size:1.6rem;font-weight:400;color:white;margin-top:0}
+    .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
+    .hero button{padding:12px 32px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
 
-    /* SERVICES */
-    .services h2 { text-align:center; margin-bottom:40px; }
-    .service-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:25px; }
-    .service-box { background:white; padding:22px; border-radius:12px; border:1px solid #f3d7e8; text-align:center; transition: transform .25s, box-shadow .25s; }
-    .service-box i { font-size:2.2rem; color:#d36ba6; margin-bottom:10px; }
-    .service-box:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,.06); }
-    .service-box .open-bridal-gallery { margin-top:12px; padding:10px 14px; border-radius:8px; background: linear-gradient(45deg,#d36ba6,#b8588e); color:#fff; border:none; cursor:pointer; }
+    .services h2{text-align:center;margin-bottom:40px}
+    .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
+    .service-box{background:white;padding:22px;border-radius:12px;border:1px solid #f3d7e8;text-align:center;transition:transform .25s,box-shadow .25s}
+    .service-box i{font-size:2.2rem;color:#d36ba6;margin-bottom:10px}
+    .service-box:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+    .service-box .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,#d36ba6,#b8588e);color:#fff;border:none;cursor:pointer}
 
-    /* ABOUT */
-    .about { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
-    .about img { width:360px; border-radius:15px; object-fit:cover; max-width:100%; height:auto; }
+    .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+    .about img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto}
 
-    /* TESTIMONIALS */
-    .testimonials { text-align:center; }
-    .testimonial-slider { max-width:700px; margin:auto; background:white; padding:30px; border-radius:12px; border:1px solid #f3d7e8; }
-    .testimonial { display:none; }
-    .testimonial.active { display:block; animation:fadeIn .6s; }
+    .testimonials{text-align:center}
+    .testimonial-slider{max-width:700px;margin:auto;background:white;padding:30px;border-radius:12px;border:1px solid #f3d7e8}
+    .testimonial{display:none}
+    .testimonial.active{display:block;animation:fadeIn .6s}
 
-    /* CONTACT FORM */
-    form { max-width:600px; margin:30px auto 0; padding:30px; background:white; border-radius:12px; border:1px solid #f3d7e8; }
-    form input, form textarea { width:100%; margin-top:12px; padding:12px; border-radius:8px; border:1px solid #ccc; font-family:inherit; }
-    form button { margin-top:20px; width:100%; padding:14px; background: linear-gradient(45deg,#d36ba6,#b8588e); border:none; color:white; border-radius:8px; cursor:pointer; font-size:1rem; }
-    .form-message { display:none; margin-top:15px; padding:12px 20px; border-radius:8px; font-weight:500; text-align:center; font-size:.95rem; opacity:0; transition: opacity .5s; }
-    .form-message.success { background: linear-gradient(90deg,#d36ba6,#b8588e); color:white; }
-    .form-message.error { background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; }
+    form{max-width:600px;margin:30px auto 0;padding:30px;background:white;border-radius:12px;border:1px solid #f3d7e8}
+    form input, form textarea{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #ccc;font-family:inherit}
+    form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
+    .form-message{display:none;margin-top:15px;padding:12px 20px;border-radius:8px;font-weight:500;text-align:center;font-size:.95rem;opacity:0;transition:opacity .5s}
+    .form-message.success{background:linear-gradient(90deg,#d36ba6,#b8588e);color:white}
+    .form-message.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
 
-    footer { background:#ffeaf3; padding:25px; text-align:center; margin-top:30px; }
-    .social a { margin:0 10px; font-size:1.5rem; color:var(--accent); }
+    footer{background:#ffeaf3;padding:25px;text-align:center;margin-top:30px}
+    .social a{margin:0 10px;font-size:1.5rem;color:var(--accent)}
 
-    .whatsapp-float { position: fixed; bottom:25px; right:25px; background:#25d366; color:white; padding:14px 17px; border-radius:50%; font-size:1.8rem; box-shadow:0 4px 10px rgba(0,0,0,.2); z-index:999; display:flex; align-items:center; justify-content:center; }
+    .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:white;padding:14px 17px;border-radius:50%;font-size:1.8rem;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;justify-content:center}
 
-    @media (max-width:768px) {
-      .hero h1 { font-size:2.2rem; }
-      .nav-links { position:absolute; top:calc(var(--nav-height)); right:8px; background:#fff7fa; flex-direction:column; width:220px; padding:15px; border-radius:0 0 10px 10px; border:1px solid #f3d7e8; transform:translateY(-6px); opacity:0; pointer-events:none; transition: transform .25s, opacity .25s; }
-      #menu-toggle:checked ~ label.hamburger + .nav-links { opacity:1; transform:none; pointer-events:auto; }
-      .hamburger { display:flex; }
-      nav[role="navigation"] .nav-links a { padding:8px 6px; display:block; }
-      .about { flex-direction:column; align-items:flex-start; }
+    @media (max-width:768px){
+      .hero h1{font-size:2.2rem}
+      .nav-links{position:absolute;top:calc(var(--nav-height));right:8px;background:#fff7fa;flex-direction:column;width:220px;padding:15px;border-radius:0 0 10px 10px;border:1px solid #f3d7e8;transform:translateY(-6px);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s}
+      #menu-toggle:checked ~ label.hamburger + .nav-links{opacity:1;transform:none;pointer-events:auto}
+      .hamburger{display:flex}
+      nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
+      .about{flex-direction:column;align-items:flex-start}
     }
-    @media (min-width:769px) {
-      .nav-links { opacity:1 !important; transform:none !important; pointer-events:auto !important; }
-    }
+    @media (min-width:769px){ .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important} }
 
-    /* ----------------- BRIDAL MODAL STYLES (updated to avoid cropping) ----------------- */
-    .modal { position: fixed; inset: 0; display:none; align-items:center; justify-content:center; z-index:2000; }
-    .modal[aria-hidden="false"] { display:flex; }
-    .modal-backdrop { position:absolute; inset:0; background: rgba(0,0,0,.65); }
-    .modal-panel { position: relative; width: 95%; max-width: 1200px; max-height: 92vh; margin:auto; z-index:2; outline:none; display:flex; flex-direction:column; border-radius:12px; }
-    .modal-content { background: #fff; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:12px; box-shadow: 0 20px 40px rgba(0,0,0,.25); }
-    .modal-close { position:absolute; right:14px; top:10px; z-index:3; background:transparent; border:none; font-size:20px; cursor:pointer; color:#333; }
-    .modal-main { display:flex; align-items:center; gap:8px; position:relative; }
-    /* modal-image-wrap: center the image and allow it to scale down without cropping */
-    .modal-image-wrap { flex:1; display:flex; align-items:center; justify-content:center; min-height: 320px; max-height: 72vh; overflow: hidden; border-radius:10px; background:#faf0f6; }
-    /* KEY FIX: let image keep aspect ratio and fit within viewport; don't force width:100%/height:100% */
-    .modal-image-wrap img { display:block; max-width: 100%; max-height: 72vh; width: auto; height: auto; user-select: none; }
-    .modal-arrow { background: rgba(255,255,255,.95); border:none; width:44px; height:44px; border-radius:50%; box-shadow:0 8px 18px rgba(0,0,0,.12); font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-    .modal-arrow:focus, .modal-close:focus { outline:3px solid #ffd6ea; }
-    .modal-thumbs-wrap { overflow-x:auto; padding:6px 4px; }
-    .modal-thumbs { display:flex; gap:8px; align-items:center; }
-    .modal-thumbs .thumb { border:2px solid transparent; border-radius:6px; padding:3px; background:transparent; cursor:pointer; }
-    .modal-thumbs .thumb img { width:84px; height:60px; object-fit:cover; border-radius:4px; display:block; }
-    .modal-thumbs .thumb[aria-selected="true"] { border-color:#d36ba6; box-shadow:0 8px 20px rgba(211,107,166,.12); }
-    .modal-caption { margin-top:6px; text-align:center; color:#444; font-size:.95rem; }
-    @media (max-width:800px) {
-      .modal-image-wrap { min-height: 220px; }
-      .modal-thumbs .thumb img { width:64px; height:46px; }
-      .modal-arrow { width:38px; height:38px; font-size:22px; }
-    }
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
+    .modal[aria-hidden="false"]{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+    .modal-panel{position:relative;width:95%;max-width:1200px;max-height:92vh;margin:auto;z-index:2;outline:none;display:flex;flex-direction:column;border-radius:12px}
+    .modal-content{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+    .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
+    .modal-main{display:flex;align-items:center;gap:8px;position:relative}
+    .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:320px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6;position:relative}
+    /* main fix: keep aspect ratio and allow zoom/pan */
+    .modal-image-wrap img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;user-select:none;cursor:zoom-in;transition:transform .18s ease}
+    .modal-image-wrap.zoomed{overflow:auto} /* when zoomed, scrollbars/panning appear */
+    .modal-image-wrap.zoomed img{max-width:none;max-height:none;width:auto;height:auto;cursor:zoom-out}
+    .modal-spinner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--spinner-size);height:var(--spinner-size);border-radius:50%;border:5px solid rgba(0,0,0,0.08);border-top-color:#d36ba6;border-right-color:#b8588e;animation:spin 0.9s linear infinite;display:none;z-index:4}
+    @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    .modal-spinner.visible{display:block}
+
+    .modal-arrow{background:rgba(255,255,255,.95);border:none;width:44px;height:44px;border-radius:50%;box-shadow:0 8px 18px rgba(0,0,0,.12);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .modal-arrow:focus,.modal-close:focus{outline:3px solid #ffd6ea}
+    .modal-thumbs-wrap{overflow-x:auto;padding:6px 4px}
+    .modal-thumbs{display:flex;gap:8px;align-items:center}
+    .modal-thumbs .thumb{border:2px solid transparent;border-radius:6px;padding:3px;background:transparent;cursor:pointer}
+    .modal-thumbs .thumb img{width:84px;height:60px;object-fit:cover;border-radius:4px;display:block}
+    .modal-thumbs .thumb[aria-selected="true"]{border-color:#d36ba6;box-shadow:0 8px 20px rgba(211,107,166,.12)}
+    .modal-caption{margin-top:6px;text-align:center;color:#444;font-size:.95rem}
+    @media (max-width:800px){ .modal-image-wrap{min-height:220px} .modal-thumbs .thumb img{width:64px;height:46px} .modal-arrow{width:38px;height:38px;font-size:22px} }
   </style>
 </head>
 <body>
@@ -134,10 +126,10 @@
     </label>
 
     <div class="nav-links" id="primary-navigation">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#testimonials">Reviews</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#testimonials" class="nav-link">Reviews</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </div>
   </nav>
 
@@ -168,13 +160,11 @@
           <h3>Party Makeup</h3>
           <p>Perfect glam for celebrations, parties, and events.</p>
         </div>
-
         <div class="service-box">
           <i class="fa-solid fa-scissors" aria-hidden="true"></i>
           <h3>Hairstyling</h3>
           <p>Customized hairstyles from curls to buns, modern to classic.</p>
         </div>
-
         <div class="service-box">
           <i class="fa-solid fa-comments" aria-hidden="true"></i>
           <h3>Makeup Consultation</h3>
@@ -185,7 +175,6 @@
 
     <!-- ABOUT -->
     <section class="about" id="about" aria-labelledby="about-heading">
-      <!-- About uses .jpeg files per your setup -->
       <img id="about-img"
            src="images/neha_jorewar_about_me.jpeg"
            srcset="images/neha_jorewar_about_me-480.jpeg 480w, images/neha_jorewar_about_me-800.jpeg 800w, images/neha_jorewar_about_me.jpeg 1200w"
@@ -252,7 +241,8 @@
       <div class="modal-content">
         <div class="modal-main">
           <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
-          <div class="modal-image-wrap">
+          <div class="modal-image-wrap" id="modal-image-wrap" aria-live="polite">
+            <div class="modal-spinner" id="modal-spinner" aria-hidden="true"></div>
             <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
             <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
           </div>
@@ -266,213 +256,261 @@
   </div>
 
   <script>
-    /* ---------- Simple helpers & UX scripts ---------- */
+  /* ===== basic helpers & existing features ===== */
 
-    (function testimonialSlider(){
-      const testimonials = document.querySelectorAll('.testimonial');
-      if (!testimonials || testimonials.length === 0) return;
-      let idx = 0;
-      testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
-      setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
-    })();
+  (function testimonialSlider(){
+    const testimonials = document.querySelectorAll('.testimonial');
+    if (!testimonials || testimonials.length === 0) return;
+    let idx = 0; testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
+    setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
+  })();
 
-    (function contactFormAjax(){
-      const form = document.getElementById('contact-form');
-      const successMessage = document.getElementById('form-success');
-      const errorMessage = document.getElementById('form-error');
-      if (!form) return;
-      form.addEventListener('submit', async function(e){
-        e.preventDefault();
-        const formData = new FormData(form);
-        try {
-          const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
-          if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
-        } catch (err) { showMessage(errorMessage); }
+  (function contactFormAjax(){
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
+    if (!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
+        if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
+      } catch (err) { showMessage(errorMessage); }
+    });
+    function showMessage(element) {
+      element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
+      setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
+    }
+  })();
+
+  /* ===== mobile hamburger: close when nav link clicked ===== */
+  (function mobileMenuBehavior(){
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!menuToggle || !navLinks) return;
+    navLinks.forEach(a => {
+      a.addEventListener('click', () => {
+        // uncheck to close menu on mobile
+        if (menuToggle.checked) {
+          menuToggle.checked = false;
+          // return focus to the clicked link target (section will receive focus after scroll)
+        }
       });
-      function showMessage(element) {
-        element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
-        setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
-      }
-    })();
-
-    (function mobileMenuAccessible(){
-      const checkbox = document.getElementById('menu-toggle');
-      const label = document.querySelector('label.hamburger');
+    });
+    // also close when clicking outside nav (optional)
+    document.addEventListener('click', (e) => {
       const nav = document.getElementById('primary-navigation');
-      if (!checkbox || !label || !nav) return;
-      function updateAria(){ const expanded = checkbox.checked; label.setAttribute('aria-expanded', String(expanded)); nav.setAttribute('data-open', expanded ? 'true' : 'false'); }
-      checkbox.addEventListener('change', updateAria);
-      label.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); checkbox.checked=!checkbox.checked; updateAria(); } });
-      updateAria();
-    })();
+      if (!nav) return;
+      if (menuToggle.checked && !nav.contains(e.target) && !e.target.closest('label.hamburger')) {
+        menuToggle.checked = false;
+      }
+    });
+  })();
 
-    (function whatsappLinks(){
-      const phone = "917020588760";
-      const links = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
-      const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-      links.forEach(id=>{
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
-        el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+  (function whatsappLinks(){
+    const phone = "917020588760";
+    const ids = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
+    const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+      el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+    });
+  })();
+
+  /* ===== About image verification (keeps .jpeg) ===== */
+  (function ensureAboutImage() {
+    const imgEl = document.getElementById('about-img');
+    if (!imgEl) return;
+    const tester = new Image();
+    tester.onload = () => console.info('[about] image loaded:', imgEl.src);
+    tester.onerror = () => {
+      const altUrl = 'images/neha_jorewar_about_me.jpeg';
+      console.warn('[about] initial about image failed. Trying', altUrl);
+      imgEl.src = altUrl;
+      imgEl.removeAttribute('srcset');
+    };
+    tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
+  })();
+
+  /* ===== Bridal modal gallery (bridal_01.jpeg .. bridal_12.jpeg) ===== */
+  (function bridalModal() {
+    const openBtns = document.querySelectorAll('.open-bridal-gallery');
+    const modal = document.getElementById('bridal-modal');
+    if (!modal) { console.warn('[bridal] modal not found'); return; }
+    const backdrop = modal.querySelector('.modal-backdrop');
+    const modalPanel = modal.querySelector('.modal-panel');
+    const mainImg = document.getElementById('bridal-modal-main');
+    const spinner = document.getElementById('modal-spinner');
+    const modalWrap = document.getElementById('modal-image-wrap');
+    const caption = document.getElementById('bridal-caption');
+    const thumbsContainer = document.getElementById('bridal-thumbs');
+    const prevBtn = modal.querySelector('[data-action="prev"]');
+    const nextBtn = modal.querySelector('[data-action="next"]');
+    const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
+
+    const folder = 'images/Bridal';
+    const MAX = 12;
+    const pad = n => n.toString().padStart(2,'0');
+    const candidates = [];
+    for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
+
+    function testImage(url, timeout = 5000){
+      return new Promise((resolve) => {
+        const img = new Image();
+        let done = false;
+        const tidy = ok => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
+        img.onload = () => tidy(true);
+        img.onerror = () => tidy(false);
+        setTimeout(() => tidy(false), timeout);
+        img.src = url;
       });
-    })();
+    }
 
-    /* ---------- Ensure About image exists (jpeg) ---------- */
-    (function ensureAboutImage() {
-      const imgEl = document.getElementById('about-img');
-      if (!imgEl) return;
-      const tester = new Image();
-      tester.onload = () => console.info('[about] image loaded:', imgEl.src);
-      tester.onerror = () => {
-        const altUrl = 'images/neha_jorewar_about_me.jpeg';
-        console.warn('[about] initial about image failed to load. Trying', altUrl);
-        imgEl.src = altUrl;
-        imgEl.removeAttribute('srcset');
+    async function discover() {
+      const found = [];
+      console.groupCollapsed('[bridal] discovery tests');
+      for (const url of candidates) {
+        // sequential check (friendly)
+        // eslint-disable-next-line no-await-in-loop
+        const res = await testImage(url);
+        console.debug('[bridal] test', url, '=>', res.ok);
+        if (res.ok) found.push(url);
+      }
+      console.groupEnd();
+      console.info('[bridal] discovery complete — found', found.length, 'images');
+      return found;
+    }
+
+    let images = [];
+    let current = 0;
+    let autoplayTimer = null;
+    const AUTOPLAY_MS = 3000;
+
+    function showSpinner(show = true){
+      if (!spinner) return;
+      spinner.classList.toggle('visible', !!show);
+      spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+
+    function buildGallery(list){
+      thumbsContainer.innerHTML = '';
+      if (!list || list.length === 0){
+        thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
+        mainImg.src = ''; caption.textContent = '';
+        return;
+      }
+      list.forEach((src,i)=>{
+        const btn = document.createElement('button');
+        btn.className = 'thumb';
+        btn.type = 'button';
+        btn.setAttribute('data-index', i);
+        btn.setAttribute('role','tab');
+        btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
+        btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
+        btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
+        btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
+        thumbsContainer.appendChild(btn);
+      });
+      showIndex(0);
+    }
+
+    function showIndex(i){
+      if (!images || images.length === 0) return;
+      i = (i + images.length) % images.length;
+      current = i;
+      // show spinner until main image loads
+      showSpinner(true);
+      // detach previous onload (safety)
+      mainImg.onload = () => {
+        showSpinner(false);
       };
-      // start test
-      tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
-    })();
+      mainImg.onerror = () => {
+        showSpinner(false);
+        console.warn('[bridal] failed to load main image:', images[i]);
+      };
+      mainImg.src = images[i];
+      mainImg.alt = `Bridal image ${i+1}`;
+      caption.textContent = `Image ${i+1} of ${images.length}`;
+      const thumbs = thumbsContainer.querySelectorAll('.thumb');
+      thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+      const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
+      selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+      // ensure zoom is off when switching image
+      if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
+    }
 
-    /* ---------- Bridal modal: looks exactly for bridal_01.jpeg ... bridal_12.jpeg ---------- */
-    (function(){
-      const openBtns = document.querySelectorAll('.open-bridal-gallery');
-      const modal = document.getElementById('bridal-modal');
-      if (!modal) { console.warn('[bridal] modal not found'); return; }
-      const backdrop = modal.querySelector('.modal-backdrop');
-      const mainImg = document.getElementById('bridal-modal-main');
-      const caption = document.getElementById('bridal-caption');
-      const thumbsContainer = document.getElementById('bridal-thumbs');
-      const prevBtn = modal.querySelector('[data-action="prev"]');
-      const nextBtn = modal.querySelector('[data-action="next"]');
-      const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
+    function next(){ showIndex(current + 1); }
+    function prev(){ showIndex(current - 1); }
 
-      if (!mainImg || !thumbsContainer) { console.warn('[bridal] main image or thumbs missing'); }
+    function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
+    function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
+    function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
 
-      const folder = 'images/Bridal'; // case-sensitive
-      const MAX = 12;
-      const pad = n => n.toString().padStart(2,'0');
-      const candidates = [];
-      for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
+    function openModal(){
+      modal.setAttribute('aria-hidden','false');
+      modalPanel && modalPanel.focus();
+      startAutoplay();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.setAttribute('aria-hidden','true');
+      stopAutoplay();
+      document.body.style.overflow = '';
+      // remove zoom if any
+      if (modalWrap.classList.contains('zoomed')) modalWrap.classList.remove('zoomed');
+      openBtns.length && openBtns[0].focus();
+    }
 
-      function testImage(url, timeout = 5000){
-        return new Promise((resolve)=>{
-          const img = new Image();
-          let done = false;
-          const tidy = (ok) => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
-          img.onload = () => tidy(true);
-          img.onerror = () => tidy(false);
-          setTimeout(()=>tidy(false), timeout);
-          img.src = url;
-        });
-      }
+    prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+    nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+    closeBtn && closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
 
-      async function discover() {
-        const found = [];
-        console.groupCollapsed('[bridal] discovery (testing', candidates.length, 'urls)');
-        for (const url of candidates) {
-          // eslint-disable-next-line no-await-in-loop
-          const res = await testImage(url);
-          console.debug('[bridal] test', url, '=>', res.ok);
-          if (res.ok) found.push(url);
+    modal.addEventListener('keydown', (ev)=> {
+      if (modal.getAttribute('aria-hidden') === 'true') return;
+      if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
+      if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
+      if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+    });
+
+    modal.addEventListener('mouseenter', stopAutoplay);
+    modal.addEventListener('mouseleave', startAutoplay);
+    modal.addEventListener('focusin', stopAutoplay);
+    modal.addEventListener('focusout', startAutoplay);
+
+    // zoom toggle: click main image to toggle zoomed state
+    mainImg.addEventListener('click', () => {
+      if (!modalWrap) return;
+      modalWrap.classList.toggle('zoomed');
+      // when zoomed, ensure spinner hidden
+      showSpinner(false);
+    });
+
+    // also allow double-click to open in new tab (convenience)
+    mainImg.addEventListener('dblclick', () => {
+      if (mainImg.src) window.open(mainImg.src, '_blank');
+    });
+
+    openBtns.forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        if (images.length === 0){
+          modal.setAttribute('aria-hidden','false'); // minimal overlay while discovering
+          const found = await discover();
+          images = found;
+          buildGallery(images);
+        } else {
+          buildGallery(images);
         }
-        console.groupEnd();
-        console.info('[bridal] discovery complete — found', found.length, 'images');
-        return found;
-      }
-
-      let images = [];
-      let current = 0;
-      let autoplayTimer = null;
-      const AUTOPLAY_MS = 3000;
-
-      function buildGallery(list){
-        thumbsContainer.innerHTML = '';
-        if (!list || list.length === 0){
-          thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
-          mainImg.src = ''; caption.textContent = '';
-          return;
-        }
-        list.forEach((src,i)=>{
-          const btn = document.createElement('button');
-          btn.className = 'thumb';
-          btn.type = 'button';
-          btn.setAttribute('data-index', i);
-          btn.setAttribute('role', 'tab');
-          btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
-          btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
-          btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
-          btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
-          thumbsContainer.appendChild(btn);
-        });
-        showIndex(0);
-      }
-
-      function showIndex(i){
-        if (!images || images.length === 0) return;
-        i = (i + images.length) % images.length;
-        current = i;
-        // KEY: set main image src — CSS ensures it fits without cropping
-        mainImg.src = images[i];
-        mainImg.alt = `Bridal image ${i+1}`;
-        caption.textContent = `Image ${i+1} of ${images.length}`;
-        const thumbs = thumbsContainer.querySelectorAll('.thumb');
-        thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
-        const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
-        selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-      }
-
-      function next(){ showIndex(current + 1); }
-      function prev(){ showIndex(current - 1); }
-
-      function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
-      function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
-      function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-      function openModal(){
-        modal.setAttribute('aria-hidden','false');
-        const panelEl = modal.querySelector('.modal-panel');
-        panelEl && panelEl.focus();
-        startAutoplay(); document.body.style.overflow = 'hidden';
-      }
-      function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
-
-      prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
-      nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
-      closeBtn && closeBtn.addEventListener('click', closeModal);
-      if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
-
-      modal.addEventListener('keydown', (ev)=> {
-        if (modal.getAttribute('aria-hidden') === 'true') return;
-        if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
-        if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
-        if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+        openModal();
       });
+    });
 
-      modal.addEventListener('mouseenter', stopAutoplay);
-      modal.addEventListener('mouseleave', startAutoplay);
-      modal.addEventListener('focusin', stopAutoplay);
-      modal.addEventListener('focusout', startAutoplay);
-
-      openBtns.forEach(btn=>{
-        btn.addEventListener('click', async ()=>{
-          if (images.length === 0){
-            // show overlay while discovering
-            modal.setAttribute('aria-hidden','false');
-            const found = await discover();
-            images = found;
-            buildGallery(images);
-          } else {
-            buildGallery(images);
-          }
-          openModal();
-        });
-      });
-
-      // pre-discover quietly after short idle
-      setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
-
-    })();
+    // pre-discover quietly
+    setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
+  })();
   </script>
 </body>
 </html>
