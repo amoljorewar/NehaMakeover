@@ -9,7 +9,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
+  <!-- Font Awesome (kept for other icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <style>
@@ -41,9 +41,11 @@
       background:transparent;
       border:1px solid transparent;
       cursor:pointer;
+      padding:6px;
     }
+    .hamburger svg { display:block; width:22px; height:16px; }
     .hamburger:focus{outline:3px solid #ffd6ea; outline-offset:3px}
-    .hamburger .bar{display:block;height:3px;width:22px;background:var(--accent);border-radius:2px}
+    .hamburger .bar { fill: var(--accent); } /* for inline svg bars */
 
     /* HERO */
     .hero{min-height:calc(90vh - var(--nav-height));background:url("images/main_background.jpeg") center/cover no-repeat;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px}
@@ -160,9 +162,12 @@
 
     <!-- hamburger is a real button (JS will toggle .open on .nav-links) -->
     <button class="hamburger" id="hamburger-btn" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
+      <!-- Inline accessible SVG hamburger icon (three bars) -->
+      <svg viewBox="0 0 24 16" aria-hidden="true" focusable="false">
+        <rect class="bar" x="0" y="1" width="24" height="2" rx="1"></rect>
+        <rect class="bar" x="0" y="7" width="24" height="2" rx="1"></rect>
+        <rect class="bar" x="0" y="13" width="24" height="2" rx="1"></rect>
+      </svg>
     </button>
 
     <div class="nav-links" id="primary-navigation" role="menu" data-open="false">
@@ -411,7 +416,6 @@
   // keep state consistent on resize (if moved to desktop, ensure nav visible)
   window.addEventListener('resize', () => {
     if (!window.matchMedia('(max-width:768px)').matches) {
-      // ensure nav is visible on desktop
       nav.classList.remove('open');
       btn.setAttribute('aria-expanded','false');
       nav.setAttribute('data-open','false');
