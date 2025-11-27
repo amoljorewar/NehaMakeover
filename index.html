@@ -26,15 +26,24 @@
     /* NAV */
     .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #f3cfe0;z-index:999}
     .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
-    nav[role="navigation"] .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links{display:flex;gap:22px;align-items:center}
     .nav-links a{font-weight:500;color:var(--accent)}
     .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
 
-    /* visually hide the checkbox */
-    #menu-toggle{position:absolute;left:-9999px;top:auto}
-    .hamburger{display:none;cursor:pointer;gap:5px;flex-direction:column}
-    .hamburger span{display:block;height:3px;width:26px;background:var(--accent);border-radius:2px}
-    .hamburger:focus{outline:2px solid #ffd6ea;outline-offset:4px}
+    /* hamburger button (JS-driven) */
+    .hamburger{
+      display:none;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      width:44px;height:40px;
+      border-radius:8px;
+      background:transparent;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .hamburger:focus{outline:3px solid #ffd6ea; outline-offset:3px}
+    .hamburger .bar{display:block;height:3px;width:22px;background:var(--accent);border-radius:2px}
 
     /* HERO */
     .hero{min-height:calc(90vh - var(--nav-height));background:url("images/main_background.jpeg") center/cover no-repeat;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px}
@@ -78,9 +87,9 @@
 
     .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:white;padding:14px 17px;border-radius:50%;font-size:1.8rem;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;justify-content:center}
 
-    /* responsive nav behavior */
+    /* responsive nav behavior (JS-driven) */
     @media (max-width:768px) {
-      .hero h1{font-size:2.2rem}
+      .hamburger{display:flex}
       .nav-links{
         position:absolute;
         top:calc(var(--nav-height));
@@ -88,22 +97,21 @@
         background:#fff7fa;
         flex-direction:column;
         width:220px;
-        padding:15px;
+        padding:12px;
         border-radius:0 0 10px 10px;
         border:1px solid #f3d7e8;
-        transform:translateY(-6px);
+        transform:translateY(-8px);
         opacity:0;
         pointer-events:none;
         transition:transform .22s ease,opacity .22s ease;
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
       }
-      /* checkbox controls visibility of nav-links */
-      #menu-toggle:checked ~ .nav-links {
-        opacity:1;
+      .nav-links.open{
         transform:none;
+        opacity:1;
         pointer-events:auto;
       }
-      .hamburger{display:flex}
-      nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
+      nav[role="navigation"] .nav-links a{padding:10px 6px;display:block}
       .about{flex-direction:column;align-items:flex-start}
     }
 
@@ -111,7 +119,7 @@
       .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important}
     }
 
-    /* ----------------- Modal (no zoom-on-click) ----------------- */
+    /* ----------------- Modal (no zoom) ----------------- */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
     .modal[aria-hidden="false"]{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
@@ -120,7 +128,6 @@
     .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
     .modal-main{display:flex;align-items:center;gap:8px;position:relative}
 
-    /* visible area that will contain the fitted image; overflow hidden (no zoom) */
     .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:320px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6;position:relative}
     .modal-image-wrap img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;object-fit:contain;user-select:none}
 
@@ -151,15 +158,13 @@
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="brand">Neha Jorewar Studio</div>
 
-    <!-- hidden checkbox controls menu state (must appear BEFORE .nav-links and label can control it) -->
-    <input id="menu-toggle" type="checkbox" aria-hidden="false" />
+    <!-- hamburger is a real button (JS will toggle .open on .nav-links) -->
+    <button class="hamburger" id="hamburger-btn" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
 
-    <!-- label toggles the checkbox -->
-    <label for="menu-toggle" class="hamburger" tabindex="0" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </label>
-
-    <!-- nav-links is a sibling that follows the checkbox (CSS sibling selector uses ~) -->
     <div class="nav-links" id="primary-navigation" role="menu" data-open="false">
       <a href="#services" class="nav-link" role="menuitem">Services</a>
       <a href="#about" class="nav-link" role="menuitem">About</a>
@@ -268,7 +273,7 @@
 
   <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 
-  <!-- BRIDAL GALLERY MODAL (no zoom-on-click) -->
+  <!-- BRIDAL GALLERY MODAL (no zoom) -->
   <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
     <div class="modal-backdrop" data-close="true"></div>
     <div class="modal-panel" role="document" tabindex="-1">
@@ -280,7 +285,7 @@
 
           <div class="modal-image-wrap" id="modal-image-wrap" aria-live="polite">
             <div class="modal-spinner" id="modal-spinner" aria-hidden="true"></div>
-            <!-- now simply show fitted image (no zoom) -->
+            <!-- fitted image -->
             <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
             <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
           </div>
@@ -296,7 +301,8 @@
   </div>
 
 <script>
-/* ---------- Testimonials, contact, whatsapp links ---------- */
+/* ---------- Basic helpers & UX ---------- */
+
 (function testimonialSlider(){
   const testimonials = document.querySelectorAll('.testimonial');
   if (!testimonials || testimonials.length === 0) return;
@@ -350,67 +356,72 @@
   tester.src = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
 })();
 
-/* ---------- Hamburger: robust open/close + aria updates ---------- */
-/* Implementation details:
-   - CSS uses #menu-toggle:checked ~ .nav-links to show/hide menu.
-   - JS keeps aria-expanded and data-open in sync and closes menu on link click or outside click.
+/* ---------- Hamburger (JS-driven) ----------
+   - toggles .open on .nav-links
+   - updates aria-expanded and data-open
+   - closes on link click or outside click (mobile only)
 */
-(function hamburgerFix(){
-  const checkbox = document.getElementById('menu-toggle');
-  const label = document.querySelector('label.hamburger');
+(function hamburgerController(){
+  const btn = document.getElementById('hamburger-btn');
   const nav = document.getElementById('primary-navigation');
   const links = document.querySelectorAll('.nav-link');
 
-  if (!checkbox || !label || !nav) return;
+  if (!btn || !nav) return;
 
-  function updateState() {
-    const open = !!checkbox.checked;
-    label.setAttribute('aria-expanded', String(open));
-    nav.setAttribute('data-open', open ? 'true' : 'false');
+  function isOpen(){ return nav.classList.contains('open'); }
+  function openNav(){
+    nav.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    nav.setAttribute('data-open','true');
   }
+  function closeNav(){
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    nav.setAttribute('data-open','false');
+  }
+  function toggleNav(){ isOpen() ? closeNav() : openNav(); }
 
-  // User clicking the label toggles the checkbox automatically via for="" attribute.
-  // Listen for change to update aria/data attributes.
-  checkbox.addEventListener('change', updateState);
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleNav();
+  });
 
-  // Support keyboard activation on label
-  label.addEventListener('keydown', (ev) => {
+  // keyboard support
+  btn.addEventListener('keydown', (ev) => {
     if (ev.key === 'Enter' || ev.key === ' ') {
       ev.preventDefault();
-      checkbox.checked = !checkbox.checked;
-      updateState();
+      toggleNav();
     }
   });
 
-  // Close menu when a nav link is clicked (mobile)
-  links.forEach(a => {
-    a.addEventListener('click', () => {
-      if (window.matchMedia('(max-width:768px)').matches && checkbox.checked) {
-        checkbox.checked = false;
-        updateState();
-      }
-    });
-  });
+  // close when a link is clicked (mobile)
+  links.forEach(a => a.addEventListener('click', () => {
+    if (window.matchMedia('(max-width:768px)').matches) closeNav();
+  }));
 
-  // Close if user taps outside while open (mobile)
+  // close when clicking outside (mobile)
   document.addEventListener('click', (e) => {
     if (!window.matchMedia('(max-width:768px)').matches) return;
-    if (!checkbox.checked) return;
+    if (!isOpen()) return;
     const target = e.target;
-    if (nav.contains(target) || target.closest('label.hamburger')) return;
-    // clicked outside
-    checkbox.checked = false;
-    updateState();
+    if (nav.contains(target) || btn.contains(target)) return;
+    closeNav();
   });
 
-  // make sure initial state is synced
-  updateState();
+  // keep state consistent on resize (if moved to desktop, ensure nav visible)
+  window.addEventListener('resize', () => {
+    if (!window.matchMedia('(max-width:768px)').matches) {
+      // ensure nav is visible on desktop
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      nav.setAttribute('data-open','false');
+    }
+  });
 })();
 
-/* ---------- Bridal gallery modal (zoom removed) ----------
-   - discovers images images/Bridal/bridal_01.jpeg ... bridal_12.jpeg
-   - shows fitted images (no zoom-on-click)
-   - thumbnails + keyboard + autoplay + spinner preserved
+/* ---------- Bridal gallery modal (no zoom) ----------
+   - uses images/Bridal/bridal_01.jpeg ... bridal_12.jpeg
+   - thumbnails + keyboard + autoplay + spinner
 */
 (function bridalModal(){
   const openBtns = document.querySelectorAll('.open-bridal-gallery');
@@ -447,7 +458,7 @@
   async function discover() {
     const found = [];
     for (const url of candidates) {
-      // check sequentially (reduces parallel requests)
+      // sequential check to reduce parallel requests
       // eslint-disable-next-line no-await-in-loop
       const res = await testImage(url);
       if (res.ok) found.push(url);
@@ -496,7 +507,6 @@
 
     mainImg.onload = () => {
       showSpinner(false);
-      // fitted display — no zooming
       mainImg.style.width = '';
       mainImg.style.height = '';
     };
