@@ -1,487 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Neha Jorewar Makeover & Hairstyling Studio</title>
-    <meta name="description" content="Neha Jorewar — Makeover & Hairstyling Studio. Bridal, party, fashion makeup and hairstyling services in Buldana. Book an appointment today." />
-    <meta property="og:title" content="Neha Jorewar Makeover & Hairstyling Studio" />
-    <meta property="og:description" content="Bridal, party & fashion makeup and hairstyling. Book your appointment." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="images/main_background.jpeg" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neha Jorewar Makeover & Hairstyling Studio</title>
+  <meta name="description" content="Neha Jorewar — Makeover & Hairstyling Studio. Bridal, party, fashion makeup and hairstyling services in Buldana. Book an appointment today." />
+  <meta property="og:title" content="Neha Jorewar Makeover & Hairstyling Studio" />
+  <meta property="og:description" content="Bridal, party & fashion makeup and hairstyling. Book your appointment." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/main_background.jpeg" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
-    <style>
-        :root {
-            --nav-height: 64px;
-            --accent: #7a2253;
-            --bg-weak: #fff7fa;
-        }
-        *{box-sizing:border-box}
-        html,body{height:100%}
-        body {
-            margin: 0;
-            font-family: "Inter", sans-serif;
-            background: var(--bg-weak);
-            color: #333;
-            scroll-behavior: smooth;
-            padding-top: var(--nav-height);
-        }
-        h1,h2,h3{font-family:"Playfair Display",serif;color:var(--accent);margin:0 0 12px 0}
-        a{color:inherit;text-decoration:none}
-        section{padding:80px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(30px);animation:fadeIn .9s forwards}
-        @keyframes fadeIn{to{opacity:1;transform:none}}
+  <style>
+    :root { --nav-height:64px; --accent:#7a2253; --bg-weak:#fff7fa; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:"Inter",sans-serif;background:var(--bg-weak);color:#333;scroll-behavior:smooth;padding-top:var(--nav-height)}
+    h1,h2,h3{font-family:"Playfair Display",serif;color:var(--accent);margin:0 0 12px 0}
+    a{color:inherit;text-decoration:none}
+    section{padding:80px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(30px);animation:fadeIn .9s forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
 
-        /* skip link */
-        .skip-link{position:absolute;left:-9999px;top:auto;background:#fff;padding:8px 12px;z-index:10000}
-        .skip-link:focus{left:8px;top:8px;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,.12)}
+    .skip-link{position:absolute;left:-9999px;top:auto;background:#fff;padding:8px 12px;z-index:10000}
+    .skip-link:focus{left:8px;top:8px;border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,.12)}
 
-        /* NAV */
-        .navbar{
-            position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #f3cfe0;z-index:999
-        }
-        .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
-        nav[role="navigation"] .nav-links{display:flex;gap:22px;align-items:center}
-        .nav-links a{font-weight:500;color:var(--accent)}
-        .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
+    .navbar{position:fixed;top:0;left:0;right:0;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #f3cfe0;z-index:999}
+    .brand{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:600;color:var(--accent)}
+    nav[role="navigation"] .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{font-weight:500;color:var(--accent)}
+    .nav-links a:hover,.nav-links a:focus{color:#d36ba6;outline:none}
 
-        #menu-toggle{position:absolute;left:-9999px}
-        .hamburger{display:none;cursor:pointer;gap:5px;flex-direction:column}
-        .hamburger span{display:block;height:3px;width:26px;background:var(--accent);border-radius:2px}
-        .hamburger:focus{outline:2px solid #ffd6ea;outline-offset:4px}
+    #menu-toggle{position:absolute;left:-9999px}
+    .hamburger{display:none;cursor:pointer;gap:5px;flex-direction:column}
+    .hamburger span{display:block;height:3px;width:26px;background:var(--accent);border-radius:2px}
+    .hamburger:focus{outline:2px solid #ffd6ea;outline-offset:4px}
 
-        /* HERO */
-        .hero{
-            min-height:calc(90vh - var(--nav-height));
-            background:url("images/main_background.jpeg") center/cover no-repeat;
-            position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px
-        }
-        .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
-        .hero-content{position:relative;z-index:2;animation:fadeInHero 1.2s ease-out forwards;max-width:900px}
-        @keyframes fadeInHero{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:none}}
-        .hero h1{font-size:2.6rem;margin-bottom:8px;color:white}
-        .hero h2{font-size:1.6rem;font-weight:400;color:white;margin-top:0}
-        .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
-        .hero button{padding:12px 32px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
+    .hero{min-height:calc(90vh - var(--nav-height));background:url("images/main_background.jpeg") center/cover no-repeat;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;color:white;padding:40px 20px}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .hero-content{position:relative;z-index:2;animation:fadeInHero 1.2s ease-out forwards;max-width:900px}
+    @keyframes fadeInHero{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:none}}
+    .hero h1{font-size:2.6rem;margin-bottom:8px;color:white}
+    .hero h2{font-size:1.6rem;font-weight:400;color:white;margin-top:0}
+    .hero p{margin:14px 0 22px;font-size:1.05rem;color:#f7eaf1}
+    .hero button{padding:12px 32px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;border-radius:25px;color:white;cursor:pointer;font-size:1rem}
 
-        /* SERVICES */
-        .services h2{text-align:center;margin-bottom:40px}
-        .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
-        .service-box{background:white;padding:22px;border-radius:12px;border:1px solid #f3d7e8;text-align:center;transition:transform .25s,box-shadow .25s}
-        .service-box i{font-size:2.2rem;color:#d36ba6;margin-bottom:10px}
-        .service-box:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-        .service-box .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,#d36ba6,#b8588e);color:#fff;border:none;cursor:pointer}
+    .services h2{text-align:center;margin-bottom:40px}
+    .service-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
+    .service-box{background:white;padding:22px;border-radius:12px;border:1px solid #f3d7e8;text-align:center;transition:transform .25s,box-shadow .25s}
+    .service-box i{font-size:2.2rem;color:#d36ba6;margin-bottom:10px}
+    .service-box:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+    .service-box .open-bridal-gallery{margin-top:12px;padding:10px 14px;border-radius:8px;background:linear-gradient(45deg,#d36ba6,#b8588e);color:#fff;border:none;cursor:pointer}
 
-        /* ABOUT */
-        .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
-        .about img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto}
+    .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+    .about img{width:360px;border-radius:15px;object-fit:cover;max-width:100%;height:auto}
 
-        /* TESTIMONIALS */
-        .testimonials{text-align:center}
-        .testimonial-slider{max-width:700px;margin:auto;background:white;padding:30px;border-radius:12px;border:1px solid #f3d7e8}
-        .testimonial{display:none}
-        .testimonial.active{display:block;animation:fadeIn .6s}
+    .testimonials{text-align:center}
+    .testimonial-slider{max-width:700px;margin:auto;background:white;padding:30px;border-radius:12px;border:1px solid #f3d7e8}
+    .testimonial{display:none}
+    .testimonial.active{display:block;animation:fadeIn .6s}
 
-        /* CONTACT FORM */
-        form{max-width:600px;margin:30px auto 0;padding:30px;background:white;border-radius:12px;border:1px solid #f3d7e8}
-        form input, form textarea{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #ccc;font-family:inherit}
-        form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
-        .form-message{display:none;margin-top:15px;padding:12px 20px;border-radius:8px;font-weight:500;text-align:center;font-size:.95rem;opacity:0;transition:opacity .5s}
-        .form-message.success{background:linear-gradient(90deg,#d36ba6,#b8588e);color:white}
-        .form-message.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+    form{max-width:600px;margin:30px auto 0;padding:30px;background:white;border-radius:12px;border:1px solid #f3d7e8}
+    form input, form textarea{width:100%;margin-top:12px;padding:12px;border-radius:8px;border:1px solid #ccc;font-family:inherit}
+    form button{margin-top:20px;width:100%;padding:14px;background:linear-gradient(45deg,#d36ba6,#b8588e);border:none;color:white;border-radius:8px;cursor:pointer;font-size:1rem}
+    .form-message{display:none;margin-top:15px;padding:12px 20px;border-radius:8px;font-weight:500;text-align:center;font-size:.95rem;opacity:0;transition:opacity .5s}
+    .form-message.success{background:linear-gradient(90deg,#d36ba6,#b8588e);color:white}
+    .form-message.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
 
-        /* FOOTER */
-        footer{background:#ffeaf3;padding:25px;text-align:center;margin-top:30px}
-        .social a{margin:0 10px;font-size:1.5rem;color:var(--accent)}
+    footer{background:#ffeaf3;padding:25px;text-align:center;margin-top:30px}
+    .social a{margin:0 10px;font-size:1.5rem;color:var(--accent)}
 
-        /* WHATSAPP FLOAT */
-        .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:white;padding:14px 17px;border-radius:50%;font-size:1.8rem;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;justify-content:center}
+    .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:white;padding:14px 17px;border-radius:50%;font-size:1.8rem;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:999;display:flex;align-items:center;justify-content:center}
 
-        /* RESPONSIVE NAV */
-        @media (max-width:768px){
-            .hero h1{font-size:2.2rem}
-            .nav-links{
-                position:absolute;top:calc(var(--nav-height));right:8px;background:#fff7fa;flex-direction:column;width:220px;padding:15px;border-radius:0 0 10px 10px;border:1px solid #f3d7e8;transform:translateY(-6px);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s
-            }
-            #menu-toggle:checked ~ label.hamburger + .nav-links{opacity:1;transform:none;pointer-events:auto}
-            .hamburger{display:flex}
-            nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
-            .about{flex-direction:column;align-items:flex-start}
-        }
-        @media (min-width:769px){
-            .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important}
-        }
+    @media (max-width:768px){
+      .hero h1{font-size:2.2rem}
+      .nav-links{position:absolute;top:calc(var(--nav-height));right:8px;background:#fff7fa;flex-direction:column;width:220px;padding:15px;border-radius:0 0 10px 10px;border:1px solid #f3d7e8;transform:translateY(-6px);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s}
+      #menu-toggle:checked ~ label.hamburger + .nav-links{opacity:1;transform:none;pointer-events:auto}
+      .hamburger{display:flex}
+      nav[role="navigation"] .nav-links a{padding:8px 6px;display:block}
+      .about{flex-direction:column;align-items:flex-start}
+    }
+    @media (min-width:769px){ .nav-links{opacity:1!important;transform:none!important;pointer-events:auto!important} }
 
-        /* ----------------- BRIDAL MODAL STYLES ----------------- */
-        .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
-        .modal[aria-hidden="false"]{display:flex}
-        .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
-        .modal-panel{position:relative;width:95%;max-width:1100px;max-height:92vh;margin:auto;z-index:2;outline:none;display:flex;flex-direction:column;border-radius:12px}
-        .modal-content{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
-        .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
-        .modal-main{display:flex;align-items:center;gap:8px;position:relative}
-        .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:380px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6}
-        .modal-image-wrap img{width:100%;height:100%;object-fit:contain;display:block;user-select:none}
-        .modal-arrow{background:rgba(255,255,255,.95);border:none;width:44px;height:44px;border-radius:50%;box-shadow:0 8px 18px rgba(0,0,0,.12);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-        .modal-arrow:focus,.modal-close:focus{outline:3px solid #ffd6ea}
-        .modal-thumbs-wrap{overflow-x:auto;padding:6px 4px}
-        .modal-thumbs{display:flex;gap:8px;align-items:center}
-        .modal-thumbs .thumb{border:2px solid transparent;border-radius:6px;padding:3px;background:transparent;cursor:pointer}
-        .modal-thumbs .thumb img{width:84px;height:60px;object-fit:cover;border-radius:4px;display:block}
-        .modal-thumbs .thumb[aria-selected="true"]{border-color:#d36ba6;box-shadow:0 8px 20px rgba(211,107,166,.12)}
-        .modal-caption{margin-top:6px;text-align:center;color:#444;font-size:.95rem}
-        @media (max-width:800px){
-            .modal-image-wrap{min-height:220px}
-            .modal-thumbs .thumb img{width:64px;height:46px}
-            .modal-arrow{width:38px;height:38px;font-size:22px}
-        }
-    </style>
+    /* modal styles */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
+    .modal[aria-hidden="false"]{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+    .modal-panel{position:relative;width:95%;max-width:1100px;max-height:92vh;margin:auto;z-index:2;outline:none;display:flex;flex-direction:column;border-radius:12px}
+    .modal-content{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+    .modal-close{position:absolute;right:14px;top:10px;z-index:3;background:transparent;border:none;font-size:20px;cursor:pointer;color:#333}
+    .modal-main{display:flex;align-items:center;gap:8px;position:relative}
+    .modal-image-wrap{flex:1;display:flex;align-items:center;justify-content:center;min-height:380px;max-height:72vh;overflow:hidden;border-radius:10px;background:#faf0f6}
+    .modal-image-wrap img{width:100%;height:100%;object-fit:contain;display:block;user-select:none}
+    .modal-arrow{background:rgba(255,255,255,.95);border:none;width:44px;height:44px;border-radius:50%;box-shadow:0 8px 18px rgba(0,0,0,.12);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .modal-arrow:focus,.modal-close:focus{outline:3px solid #ffd6ea}
+    .modal-thumbs-wrap{overflow-x:auto;padding:6px 4px}
+    .modal-thumbs{display:flex;gap:8px;align-items:center}
+    .modal-thumbs .thumb{border:2px solid transparent;border-radius:6px;padding:3px;background:transparent;cursor:pointer}
+    .modal-thumbs .thumb img{width:84px;height:60px;object-fit:cover;border-radius:4px;display:block}
+    .modal-thumbs .thumb[aria-selected="true"]{border-color:#d36ba6;box-shadow:0 8px 20px rgba(211,107,166,.12)}
+    .modal-caption{margin-top:6px;text-align:center;color:#444;font-size:.95rem}
+    @media (max-width:800px){ .modal-image-wrap{min-height:220px} .modal-thumbs .thumb img{width:64px;height:46px} .modal-arrow{width:38px;height:38px;font-size:22px} }
+  </style>
 </head>
 <body>
-    <a class="skip-link" href="#maincontent">Skip to content</a>
+  <a class="skip-link" href="#maincontent">Skip to content</a>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="brand">Neha Jorewar Studio</div>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="brand">Neha Jorewar Studio</div>
 
-        <input id="menu-toggle" type="checkbox" aria-hidden="false" />
-        <label for="menu-toggle" class="hamburger" tabindex="0" aria-controls="primary-navigation" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </label>
+    <input id="menu-toggle" type="checkbox" aria-hidden="false" />
+    <label for="menu-toggle" class="hamburger" tabindex="0" aria-controls="primary-navigation" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
 
-        <div class="nav-links" id="primary-navigation">
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#testimonials">Reviews</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <div class="nav-links" id="primary-navigation">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <main id="maincontent">
-    <!-- HERO -->
+  <main id="maincontent">
     <section class="hero" aria-labelledby="hero-heading">
-        <div class="hero-content">
-            <h1 id="hero-heading">Neha Jorewar — Makeover & Hairstyling Studio</h1>
-            <h2>Bringing out your inner elegance with professional touch, style, and care.</h2>
-            <p>Expert bridal, party and fashion makeup plus hairstyling. Book your appointment today.</p>
-            <button onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Book an Appointment</button>
-        </div>
+      <div class="hero-content">
+        <h1 id="hero-heading">Neha Jorewar — Makeover & Hairstyling Studio</h1>
+        <h2>Bringing out your inner elegance with professional touch, style, and care.</h2>
+        <p>Expert bridal, party and fashion makeup plus hairstyling. Book your appointment today.</p>
+        <button onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Book an Appointment</button>
+      </div>
     </section>
 
-    <!-- SERVICES -->
     <section class="services" id="services" aria-labelledby="services-heading">
-        <h2 id="services-heading">Our Services</h2>
-        <div class="service-list">
-            <!-- BRIDAL: open modal button -->
-            <div class="service-box">
-                <i class="fa-solid fa-ring" aria-hidden="true"></i>
-                <h3>Bridal Makeup</h3>
-                <p>Elegant, long-lasting bridal looks tailored to your personality.</p>
-                <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">
-                    View Bridal Gallery
-                </button>
-            </div>
-
-            <div class="service-box">
-                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                <h3>Party Makeup</h3>
-                <p>Perfect glam for celebrations, parties, and events.</p>
-            </div>
-            <div class="service-box">
-                <i class="fa-solid fa-scissors" aria-hidden="true"></i>
-                <h3>Hairstyling</h3>
-                <p>Customized hairstyles from curls to buns, modern to classic.</p>
-            </div>
-            <div class="service-box">
-                <i class="fa-solid fa-comments" aria-hidden="true"></i>
-                <h3>Makeup Consultation</h3>
-                <p>Personalized product and style guidance.</p>
-            </div>
+      <h2 id="services-heading">Our Services</h2>
+      <div class="service-list">
+        <div class="service-box">
+          <i class="fa-solid fa-ring" aria-hidden="true"></i>
+          <h3>Bridal Makeup</h3>
+          <p>Elegant, long-lasting bridal looks tailored to your personality.</p>
+          <button class="open-bridal-gallery" type="button" aria-haspopup="dialog" aria-controls="bridal-modal">View Bridal Gallery</button>
         </div>
+
+        <div class="service-box">
+          <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+          <h3>Party Makeup</h3>
+          <p>Perfect glam for celebrations, parties, and events.</p>
+        </div>
+        <div class="service-box">
+          <i class="fa-solid fa-scissors" aria-hidden="true"></i>
+          <h3>Hairstyling</h3>
+          <p>Customized hairstyles from curls to buns, modern to classic.</p>
+        </div>
+        <div class="service-box">
+          <i class="fa-solid fa-comments" aria-hidden="true"></i>
+          <h3>Makeup Consultation</h3>
+          <p>Personalized product and style guidance.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="about" id="about" aria-labelledby="about-heading">
-        <img src="images/neha_jorewar_about_me.jpeg"
-             srcset="images/neha_jorewar_about_me-480.jpg 480w, images/neha_jorewar_about_me-800.jpg 800w, images/neha_jorewar_about_me.jpeg 1200w"
-             sizes="(max-width:600px) 100vw, 360px"
-             alt="Neha Jorewar smiling, makeup artist"
-             loading="lazy">
-        <div class="about-text">
-            <h2 id="about-heading">About Me</h2>
-            <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
-            <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
-        </div>
+      <!-- About image uses .jpeg explicitly (as you said files are .jpeg) -->
+      <img id="about-img"
+           src="images/neha_jorewar_about_me.jpeg"
+           srcset="images/neha_jorewar_about_me-480.jpeg 480w, images/neha_jorewar_about_me-800.jpeg 800w, images/neha_jorewar_about_me.jpeg 1200w"
+           sizes="(max-width:600px) 100vw, 360px"
+           alt="Neha Jorewar smiling, makeup artist"
+           loading="lazy">
+      <div class="about-text">
+        <h2 id="about-heading">About Me</h2>
+        <p>Hi! I'm <strong>Neha Jorewar</strong>, a professional makeover & hairstyling artist with years of experience crafting elegant bridal, party, and fashion looks.</p>
+        <p>My aim is to bring out the best version of you—naturally beautiful, confident, and radiant.</p>
+      </div>
     </section>
 
-    <!-- TESTIMONIALS -->
     <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
-        <h2 id="testimonials-heading">Client Reviews</h2>
-        <div class="testimonial-slider" aria-live="polite">
-            <div class="testimonial active">"Absolutely loved my bridal makeup! It stayed perfect all day!" — <b>Priya</b></div>
-            <div class="testimonial">"Neha understood exactly what look I wanted. Highly recommended!" — <b>Sneha</b></div>
-            <div class="testimonial">"Amazing hairstyling and so professional. Will book again!" — <b>Anjali</b></div>
-        </div>
+      <h2 id="testimonials-heading">Client Reviews</h2>
+      <div class="testimonial-slider" aria-live="polite">
+        <div class="testimonial active">"Absolutely loved my bridal makeup! It stayed perfect all day!" — <b>Priya</b></div>
+        <div class="testimonial">"Neha understood exactly what look I wanted. Highly recommended!" — <b>Sneha</b></div>
+        <div class="testimonial">"Amazing hairstyling and so professional. Will book again!" — <b>Anjali</b></div>
+      </div>
     </section>
 
-    <!-- CONTACT -->
     <section class="contact" id="contact" aria-labelledby="contact-heading">
-        <h2 id="contact-heading">Contact Me</h2>
-        <form id="contact-form" action="https://formspree.io/f/myzaagjk" method="POST" novalidate>
-            <label class="sr-only" for="name">Your Name</label>
-            <input id="name" type="text" name="name" placeholder="Your Name" required />
-            <label class="sr-only" for="email">Your Email</label>
-            <input id="email" type="email" name="_replyto" placeholder="Your Email" required />
-            <label class="sr-only" for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+      <h2 id="contact-heading">Contact Me</h2>
+      <form id="contact-form" action="https://formspree.io/f/myzaagjk" method="POST" novalidate>
+        <label class="sr-only" for="name">Your Name</label>
+        <input id="name" type="text" name="name" placeholder="Your Name" required />
+        <label class="sr-only" for="email">Your Email</label>
+        <input id="email" type="email" name="_replyto" placeholder="Your Email" required />
+        <label class="sr-only" for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
 
-        <p style="text-align:center; margin-top:15px;">
-            Or chat with me on WhatsApp:
-            <a href="#" id="whatsapp-contact" target="_blank" rel="noopener noreferrer" style="color:#25d366; font-weight:bold;">
-                +91 70205 88760
-            </a>
-        </p>
+      <p style="text-align:center; margin-top:15px;">
+        Or chat with me on WhatsApp:
+        <a href="#" id="whatsapp-contact" target="_blank" rel="noopener noreferrer" style="color:#25d366; font-weight:bold;">
+          +91 70205 88760
+        </a>
+      </p>
 
-        <p id="form-success" class="form-message success" role="status">✔ Thank you! Your message has been sent.</p>
-        <p id="form-error" class="form-message error" role="alert">✖ Oops! Something went wrong. Please try again.</p>
+      <p id="form-success" class="form-message success" role="status">✔ Thank you! Your message has been sent.</p>
+      <p id="form-error" class="form-message error" role="alert">✖ Oops! Something went wrong. Please try again.</p>
     </section>
-    </main>
+  </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="social">
-            <a href="https://www.instagram.com/nehajorewar_makeover?igsh=MWZxMWhsa25xMDAzZA==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-            <a href="#" id="whatsapp-footer" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+  <footer>
+    <div class="social">
+      <a href="https://www.instagram.com/nehajorewar_makeover?igsh=MWZxMWhsa25xMDAzZA==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+      <a href="#" id="whatsapp-footer" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+    </div>
+    <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
+  </footer>
+
+  <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+
+  <!-- Modal -->
+  <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" role="document" tabindex="-1">
+      <button class="modal-close" aria-label="Close gallery" data-action="close">✕</button>
+      <div class="modal-content">
+        <div class="modal-main">
+          <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
+          <div class="modal-image-wrap">
+            <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
+            <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
+          </div>
+          <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
         </div>
-        <p>© 2025 Makeover & Hairstyling Studio. All rights reserved.</p>
-    </footer>
-
-    <!-- WHATSAPP FLOAT BUTTON -->
-    <a href="#" class="whatsapp-float" id="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-
-    <!-- BRIDAL GALLERY MODAL (placed before closing body) -->
-    <div id="bridal-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Bridal gallery">
-      <div class="modal-backdrop" data-close="true"></div>
-      <div class="modal-panel" role="document" tabindex="-1">
-        <button class="modal-close" aria-label="Close gallery" data-action="close">✕</button>
-
-        <div class="modal-content">
-          <div class="modal-main">
-            <button class="modal-arrow prev" data-action="prev" aria-label="Previous image">‹</button>
-            <div class="modal-image-wrap">
-              <img id="bridal-modal-main" src="" alt="Bridal image" loading="lazy">
-              <div id="bridal-caption" class="modal-caption" aria-live="polite"></div>
-            </div>
-            <button class="modal-arrow next" data-action="next" aria-label="Next image">›</button>
-          </div>
-
-          <div class="modal-thumbs-wrap">
-            <div id="bridal-thumbs" class="modal-thumbs" role="tablist" aria-label="Bridal thumbnails"></div>
-          </div>
+        <div class="modal-thumbs-wrap">
+          <div id="bridal-thumbs" class="modal-thumbs" role="tablist" aria-label="Bridal thumbnails"></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- SCRIPTS -->
-    <script>
-    /* Testimonial slider (robust) */
+  <script>
+    /* Testimonial slider */
     (function(){
-        const testimonials = document.querySelectorAll('.testimonial');
-        if (!testimonials || testimonials.length === 0) return;
-        let idx = 0;
-        testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
-        setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
+      const testimonials = document.querySelectorAll('.testimonial');
+      if (!testimonials || testimonials.length === 0) return;
+      let idx = 0;
+      testimonials.forEach((t,i)=>t.classList.toggle('active', i===0));
+      setInterval(()=>{ testimonials.forEach(t=>t.classList.remove('active')); testimonials[idx].classList.add('active'); idx=(idx+1)%testimonials.length; }, 3000);
     })();
 
-    /* Contact form AJAX */
+    /* Contact form AJAX (unchanged) */
     (function(){
-        const form = document.getElementById('contact-form');
-        const successMessage = document.getElementById('form-success');
-        const errorMessage = document.getElementById('form-error');
-        if (!form) return;
-        form.addEventListener('submit', async function(e){
-            e.preventDefault();
-            const formData = new FormData(form);
-            try {
-                const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
-                if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
-            } catch (err) { showMessage(errorMessage); }
+      const form = document.getElementById('contact-form');
+      const successMessage = document.getElementById('form-success');
+      const errorMessage = document.getElementById('form-error');
+      if (!form) return;
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const formData = new FormData(form);
+        try {
+          const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
+          if (response.ok) { form.reset(); showMessage(successMessage); } else { throw new Error('Network response was not ok.'); }
+        } catch (err) { showMessage(errorMessage); }
+      });
+      function showMessage(element) {
+        element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
+        setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
+      }
+    })();
+
+    /* Mobile menu accessible */
+    (function(){
+      const checkbox = document.getElementById('menu-toggle');
+      const label = document.querySelector('label.hamburger');
+      const nav = document.getElementById('primary-navigation');
+      if (!checkbox || !label || !nav) return;
+      function updateAria(){ const expanded = checkbox.checked; label.setAttribute('aria-expanded', String(expanded)); nav.setAttribute('data-open', expanded ? 'true' : 'false'); }
+      checkbox.addEventListener('change', updateAria);
+      label.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); checkbox.checked=!checkbox.checked; updateAria(); } });
+      updateAria();
+    })();
+
+    /* WhatsApp links */
+    (function(){
+      const phone = "917020588760";
+      const links = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
+      const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+      links.forEach(id=>{
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
+        el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+      });
+    })();
+
+    /* ---------- About image check: ensure .jpeg loads ---------- */
+    (function ensureAboutImage() {
+      const imgEl = document.getElementById('about-img');
+      if (!imgEl) return;
+      // if current src loads, do nothing; otherwise try .jpeg explicitly
+      const tryUrl = imgEl.src || 'images/neha_jorewar_about_me.jpeg';
+      const tester = new Image();
+      tester.onload = () => console.info('[about] image loaded:', tryUrl);
+      tester.onerror = () => {
+        // try .jpeg
+        const altUrl = 'images/neha_jorewar_about_me.jpeg';
+        console.warn('[about] initial about image failed to load. Trying', altUrl);
+        imgEl.src = altUrl;
+        // remove srcset to avoid conflicts
+        imgEl.removeAttribute('srcset');
+      };
+      tester.src = tryUrl;
+    })();
+
+    /* ---------- Bridal modal: looks exactly for bridal_01.jpeg ... bridal_12.jpeg ---------- */
+    (function(){
+      const openBtns = document.querySelectorAll('.open-bridal-gallery');
+      const modal = document.getElementById('bridal-modal');
+      if (!modal) { console.warn('[bridal] modal not found'); return; }
+      const backdrop = modal.querySelector('.modal-backdrop');
+      const mainImg = document.getElementById('bridal-modal-main');
+      const caption = document.getElementById('bridal-caption');
+      const thumbsContainer = document.getElementById('bridal-thumbs');
+      const prevBtn = modal.querySelector('[data-action="prev"]');
+      const nextBtn = modal.querySelector('[data-action="next"]');
+      const closeBtn = modal.querySelector('[data-action="close"], .modal-close');
+
+      if (!mainImg || !thumbsContainer) { console.warn('[bridal] main image or thumbs missing'); }
+
+      const folder = 'images/Bridal'; // exact folder (case-sensitive)
+      const MAX = 12;
+      const pad = n => n.toString().padStart(2,'0');
+      const candidates = [];
+      for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpeg`); }
+
+      function testImage(url, timeout = 5000){
+        return new Promise((resolve)=>{
+          const img = new Image();
+          let done = false;
+          const tidy = (ok) => { if (!done) { done = true; resolve({ ok, url }); img.onload = img.onerror = null; } };
+          img.onload = () => tidy(true);
+          img.onerror = () => tidy(false);
+          setTimeout(()=>tidy(false), timeout);
+          img.src = url;
         });
-        function showMessage(element) {
-            element.style.display = 'block'; void element.offsetWidth; element.style.opacity = '1';
-            setTimeout(()=>{ element.style.opacity = '0'; setTimeout(()=>{ element.style.display='none' }, 500); }, 5000);
+      }
+
+      async function discover() {
+        const found = [];
+        console.groupCollapsed('[bridal] discovery (testing', candidates.length, 'urls)');
+        for (const url of candidates) {
+          // eslint-disable-next-line no-await-in-loop
+          const res = await testImage(url);
+          console.debug('[bridal] test', url, '=>', res.ok);
+          if (res.ok) found.push(url);
         }
-    })();
+        console.groupEnd();
+        console.info('[bridal] discovery complete — found', found.length, 'images');
+        return found;
+      }
 
-    /* Accessible mobile menu */
-    (function(){
-        const checkbox = document.getElementById('menu-toggle');
-        const label = document.querySelector('label.hamburger');
-        const nav = document.getElementById('primary-navigation');
-        if (!checkbox || !label || !nav) return;
-        function updateAria(){ const expanded = checkbox.checked; label.setAttribute('aria-expanded', String(expanded)); nav.setAttribute('data-open', expanded ? 'true' : 'false'); }
-        checkbox.addEventListener('change', updateAria);
-        label.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); checkbox.checked=!checkbox.checked; updateAria(); } });
-        updateAria();
-    })();
+      let images = [];
+      let current = 0;
+      let autoplayTimer = null;
+      const AUTOPLAY_MS = 3000;
 
-    /* WhatsApp cross-device link logic */
-    (function(){
-        const phone = "917020588760";
-        const links = ['whatsapp-float','whatsapp-contact','whatsapp-footer'];
-        const isMobile = /Mobile|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-        links.forEach(id=>{
-            const el = document.getElementById(id);
-            if (!el) return;
-            if (isMobile) el.href = `https://wa.me/${phone}`; else el.href = `https://web.whatsapp.com/send?phone=${phone}`;
-            el.setAttribute('rel','noopener noreferrer'); el.setAttribute('target','_blank');
+      function buildGallery(list){
+        thumbsContainer.innerHTML = '';
+        if (!list || list.length === 0){
+          thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in images/Bridal (checked bridal_01.jpeg … bridal_12.jpeg)</p>';
+          mainImg.src = ''; caption.textContent = '';
+          return;
+        }
+        list.forEach((src,i)=>{
+          const btn = document.createElement('button');
+          btn.className = 'thumb';
+          btn.type = 'button';
+          btn.setAttribute('data-index', i);
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
+          btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
+          btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
+          btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
+          thumbsContainer.appendChild(btn);
         });
-    })();
+        showIndex(0);
+      }
 
-    /* ---------------- BRIDAL MODAL GALLERY (uses exact filenames bridal_01..bridal_12) ---------------- */
-    (function(){
-        const openBtns = document.querySelectorAll('.open-bridal-gallery');
-        const modal = document.getElementById('bridal-modal');
-        const backdrop = modal && modal.querySelector('.modal-backdrop');
-        const mainImg = modal && document.getElementById('bridal-modal-main');
-        const caption = modal && document.getElementById('bridal-caption');
-        const thumbsContainer = modal && document.getElementById('bridal-thumbs');
-        const prevBtn = modal && modal.querySelector('[data-action="prev"]');
-        const nextBtn = modal && modal.querySelector('[data-action="next"]');
-        const closeBtn = modal && modal.querySelector('[data-action="close"], .modal-close');
+      function showIndex(i){
+        if (!images || images.length === 0) return;
+        i = (i + images.length) % images.length;
+        current = i;
+        mainImg.src = images[i];
+        mainImg.alt = `Bridal image ${i+1}`;
+        caption.textContent = `Image ${i+1} of ${images.length}`;
+        const thumbs = thumbsContainer.querySelectorAll('.thumb');
+        thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+        const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
+        selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+      }
 
-        if (!modal || !mainImg || !thumbsContainer) return;
+      function next(){ showIndex(current + 1); }
+      function prev(){ showIndex(current - 1); }
 
-        // Configuration: exact filenames with leading zeroes
-        const folder = 'images/Bridal';
-        const MAX = 12;
-        const pad = (n) => n.toString().padStart(2,'0'); // 01,02,...
-        const candidates = [];
-        for (let i=1;i<=MAX;i++){ candidates.push(`${folder}/bridal_${pad(i)}.jpg`); }
+      function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
+      function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
+      function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
 
-        // test a single image url, resolves ok flag
-        function testImage(url){
-            return new Promise((resolve)=>{
-                const img = new Image();
-                img.onload = () => resolve({ ok: true, url });
-                img.onerror = () => resolve({ ok: false, url });
-                img.src = url;
-            });
-        }
+      function openModal(){
+        modal.setAttribute('aria-hidden','false');
+        const panelEl = modal.querySelector('.modal-panel');
+        panelEl && panelEl.focus();
+        startAutoplay(); document.body.style.overflow = 'hidden';
+      }
+      function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
 
-        // discover images sequentially to avoid many parallel requests
-        async function discover(){
-            const found = [];
-            for (const url of candidates){
-                // eslint-disable-next-line no-await-in-loop
-                const res = await testImage(url);
-                if (res.ok) found.push(url);
-            }
-            return found;
-        }
+      prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
+      nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
+      closeBtn && closeBtn.addEventListener('click', closeModal);
+      if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
 
-        // state
-        let images = [];
-        let current = 0;
-        let autoplayTimer = null;
-        const AUTOPLAY_MS = 3000;
+      modal.addEventListener('keydown', (ev)=> {
+        if (modal.getAttribute('aria-hidden') === 'true') return;
+        if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
+        if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
+        if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+      });
 
-        function buildGallery(list){
-            thumbsContainer.innerHTML = '';
-            if (!list || list.length === 0){
-                thumbsContainer.innerHTML = '<p style="padding:8px;color:#666">No bridal images found in ' + folder + '</p>';
-                mainImg.src = ''; caption.textContent = '';
-                return;
-            }
-            list.forEach((src,i)=>{
-                const btn = document.createElement('button');
-                btn.className = 'thumb';
-                btn.type = 'button';
-                btn.setAttribute('data-index', i);
-                btn.setAttribute('role','tab');
-                btn.setAttribute('aria-selected', i===0 ? 'true' : 'false');
-                btn.innerHTML = `<img src="${src}" alt="Bridal thumbnail ${i+1}" loading="lazy">`;
-                btn.addEventListener('click', ()=>{ showIndex(i); resetAutoplay(); });
-                btn.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); showIndex(i); resetAutoplay(); }});
-                thumbsContainer.appendChild(btn);
-            });
-            showIndex(0);
-        }
+      modal.addEventListener('mouseenter', stopAutoplay);
+      modal.addEventListener('mouseleave', startAutoplay);
+      modal.addEventListener('focusin', stopAutoplay);
+      modal.addEventListener('focusout', startAutoplay);
 
-        function showIndex(i){
-            if (!images || images.length === 0) return;
-            i = (i + images.length) % images.length;
-            current = i;
-            mainImg.src = images[i];
-            mainImg.alt = `Bridal image ${i+1}`;
-            caption.textContent = `Image ${i+1} of ${images.length}`;
-            const thumbs = thumbsContainer.querySelectorAll('.thumb');
-            thumbs.forEach((t, idx)=> t.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
-            const selected = thumbsContainer.querySelector('.thumb[aria-selected="true"]');
-            selected && selected.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-        }
-
-        function next(){ showIndex(current + 1); }
-        function prev(){ showIndex(current - 1); }
-
-        function startAutoplay(){ if (autoplayTimer || images.length <= 1) return; autoplayTimer = setInterval(next, AUTOPLAY_MS); }
-        function stopAutoplay(){ if (!autoplayTimer) return; clearInterval(autoplayTimer); autoplayTimer = null; }
-        function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-        function openModal(){
-            modal.setAttribute('aria-hidden','false');
-            const panelEl = modal.querySelector('.modal-panel');
-            panelEl && panelEl.focus();
-            startAutoplay(); document.body.style.overflow = 'hidden';
-        }
-        function closeModal(){ modal.setAttribute('aria-hidden','true'); stopAutoplay(); document.body.style.overflow = ''; openBtns.length && openBtns[0].focus(); }
-
-        prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetAutoplay(); });
-        nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetAutoplay(); });
-        closeBtn && closeBtn.addEventListener('click', closeModal);
-        if (backdrop) backdrop.addEventListener('click', (e)=>{ if (e.target.dataset.close === 'true') closeModal(); });
-
-        modal.addEventListener('keydown', (ev)=> {
-            if (modal.getAttribute('aria-hidden') === 'true') return;
-            if (ev.key === 'Escape') { ev.preventDefault(); closeModal(); }
-            if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); resetAutoplay(); }
-            if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); resetAutoplay(); }
+      openBtns.forEach(btn=>{
+        btn.addEventListener('click', async ()=>{
+          if (images.length === 0){
+            modal.setAttribute('aria-hidden','false'); // show overlay while discovering
+            const found = await discover();
+            images = found;
+            buildGallery(images);
+          } else {
+            buildGallery(images);
+          }
+          openModal();
         });
+      });
 
-        modal.addEventListener('mouseenter', stopAutoplay);
-        modal.addEventListener('mouseleave', startAutoplay);
-        modal.addEventListener('focusin', stopAutoplay);
-        modal.addEventListener('focusout', startAutoplay);
-
-        // When user clicks "View Bridal Gallery"
-        openBtns.forEach(btn=>{
-            btn.addEventListener('click', async ()=>{
-                // if not discovered yet, do so
-                if (images.length === 0){
-                    modal.setAttribute('aria-hidden','false'); // show minimal overlay while discovering
-                    const found = await discover();
-                    images = found;
-                    buildGallery(images);
-                } else {
-                    buildGallery(images);
-                }
-                openModal();
-            });
-        });
-
-        // optional: background discover (non-blocking) after small delay
-        setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
-
+      // pre-discover quietly after short idle
+      setTimeout(()=>{ discover().then(found=>{ if (found && found.length) images = found; }); }, 1200);
     })();
-    </script>
+  </script>
 </body>
 </html>
 
